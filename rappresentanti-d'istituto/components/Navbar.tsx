@@ -129,7 +129,7 @@ const Navbar: React.FC = () => {
               transition={{ delay: 0.6 }}
               className="absolute bottom-12 font-sans text-xs uppercase tracking-[0.2em]"
             >
-              Istituto J.C. Maxwell
+              Rappresentanti d'Istituto
             </motion.div>
           </motion.div>
         )}

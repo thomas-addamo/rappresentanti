@@ -46,7 +46,7 @@ const Goals: React.FC = () => {
     <section id="obiettivi" className="py-32 px-6 md:px-24 bg-paper relative">
       <div className="max-w-4xl mx-auto">
         <div className="mb-20 text-center">
-            <h2 className="font-serif text-6xl text-primary mb-4">Roadmap 2025</h2>
+            <h2 className="font-serif text-6xl text-primary mb-4">Roadmap 2025/26</h2>
             <p className="font-sans text-primary/70">Il nostro piano d'azione, passo dopo passo.</p>
         </div>
 
@@ -97,7 +97,7 @@ const Goals: React.FC = () => {
                          <div className="w-full bg-gray-200 h-1.5 rounded-full mt-6 overflow-hidden">
                             <motion.div 
                                 initial={{ width: 0 }}
-                                whileInView={{ width: '65%' }}
+                                whileInView={{ width: '30%' }}
                                 transition={{ duration: 1.5, ease: "easeOut" }}
                                 className="bg-orange-500 h-full rounded-full"
                             />

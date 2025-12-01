@@ -1,17 +1,63 @@
 import React, { useState } from 'react';
 import { Send, Check } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormState('sending');
-    // Simulate API call
-    setTimeout(() => {
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get('name') || '').trim();
+    const fromEmail = String(data.get('email') || '').trim();
+    const message = String(data.get('message') || '').trim();
+
+    const EMAIL_TO = 'rappresentanti.maxwelll@gmail.com';
+
+    const pubKey = process.env.EMAILJS_PUBLIC_KEY as string | undefined;
+    const serviceId = process.env.EMAILJS_SERVICE_ID as string | undefined;
+    const templateId = process.env.EMAILJS_TEMPLATE_ID as string | undefined;
+
+    // Se configurato EmailJS, invia direttamente; altrimenti fallback a mailto
+    if (pubKey && serviceId && templateId) {
+      try {
+        emailjs.init(pubKey);
+        await emailjs.send(serviceId, templateId, {
+          from_name: name,
+          from_email: fromEmail,
+          message,
+          to_email: EMAIL_TO,
+        });
+        setFormState('sent');
+        form.reset();
+        setTimeout(() => setFormState('idle'), 3000);
+      } catch (err) {
+        console.error('Errore invio EmailJS:', err);
+        setFormState('idle');
+        alert("C'è stato un errore nell'invio. Riprova più tardi.");
+      }
+      return;
+    }
+
+    // Fallback: apre il client email dell'utente
+    const subject = `Nuovo messaggio dal sito — ${name || 'Utente'}`;
+    const body = `Da: ${name} <${fromEmail}>
+
+${message}`;
+    const mailto = `mailto:${EMAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    try {
+      window.location.href = mailto;
       setFormState('sent');
+      form.reset();
       setTimeout(() => setFormState('idle'), 3000);
-    }, 1500);
+    } catch (err) {
+      console.error('Errore apertura mailto:', err);
+      setFormState('idle');
+      alert("Impossibile aprire il client email. Puoi scriverci a: " + EMAIL_TO);
+    }
   };
 
   return (

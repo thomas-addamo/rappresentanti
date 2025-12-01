@@ -6,7 +6,7 @@ const reps: Representative[] = [
   {
     id: 1,
     name: "Giulio Castellani",
-    role: "4A INFO",
+    role: "4A LES",
     description: "Coordina i social media e si assicura che ogni voce venga ascoltata durante le assemblee.",
     image: "https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/caste.jpg",
     instaHandle: "@caaste.e"
@@ -14,15 +14,15 @@ const reps: Representative[] = [
   {
     id: 2,
     name: "Emma Cirafici",
-    role: "Eventi & Sport",
+    role: "4A LSA",
     description: "Organizzatrice nata. Il suo obiettivo è riportare i tornei sportivi interclasse e le feste d'istituto.",
-    image: "https://picsum.photos/400/600?random=2",
+    image: "https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/emma.jpg",
     instaHandle: "@ciraficiemma_"
   },
   {
     id: 3,
     name: "Eleonora Schirru",
-    role: "Didattica",
+    role: "5A INFO",
     description: "Il punto di riferimento per problemi con i professori e proposte per nuove attività laboratoriali.",
     image: "https://picsum.photos/400/600?random=3",
     instaHandle: "@schirrulele"
@@ -30,7 +30,7 @@ const reps: Representative[] = [
   {
     id: 4,
     name: "Nicol Polizzi",
-    role: "Infrastrutture",
+    role: "4B LES",
     description: "Si batte per macchinette migliori, bagni funzionanti e spazi comuni più accoglienti.",
     image: "https://picsum.photos/400/600?random=4",
     instaHandle: "@_nicolpolizzi_"
