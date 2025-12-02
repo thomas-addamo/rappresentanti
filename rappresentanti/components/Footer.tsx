@@ -9,6 +9,9 @@ const Footer: React.FC = () => {
       <div className="font-sans text-xs uppercase tracking-widest opacity-50">
         &copy; {new Date().getFullYear()} RAPPRESENTANTI D'ISTITUTO
       </div>
+      <div className="font-sans text-xs tracking-widest opacity-50">
+        @rappresentanti.maxwell
+      </div>
     </footer>
   );
 };
