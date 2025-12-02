@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} Tutti i diritti riservati
           </div>
           <div className="font-serif text-lg opacity-80">
-            Made with passion
+            Created by Thomas Addamo.
           </div>
         </div>
 
