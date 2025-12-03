@@ -27,48 +27,55 @@ const goals: Goal[] = [
   },
   {
     id: 4,
+    title: "Promozioni e sconti",
+    description: "Promozioni e sconti per studenti e docenti.",
+    status: "in-progress",
+    icon: ""
+  },
+  {
+    id: 5,
     title: "Feste d'Istituto",
     description: "Organizzazione di feste scolastiche e dei prom con altri istituti nel territorio.",
     status: "in-progress",
     icon: ""
   },
   {
-    id: 5,
+    id: 6,
     title: "Diritti e doveri dello studente",
     description: "Pubblicazione su Instagram di contenuti chiari e accessibili per informare tutta la comunità scolastica.",
     status: "in-progress",
     icon: ""
   },
   {
-    id: 6,
+    id: 7,
     title: "Collaborazione Istituzionale",
     description: "Progetti e iniziative in coordinamento con il Comune di Nichelino.",
     status: "locked",
     icon: ""
   },
   {
-    id: 7,
+    id: 8,
     title: "Tornei studenteschi",
     description: "Attività sportive extrascolastiche aperte alle classi e contro istituti del territorio.",
     status: "locked",
     icon: ""
   },
   {
-    id: 8,
+    id: 9,
     title: "Collettivo degli studenti",
     description: "Gruppo dedicato al confronto, alle idee e alla rappresentanza studentesca. Garantisce la formazione per diventare futuri rappresentanti.",
     status: "locked",
     icon: ""
   },
   {
-    id: 9,
+    id: 10,
     title: "Co-gestione",
     description: "Spazi di collaborazione tra studenti e scuola per la gestione di attività e progetti.",
     status: "locked",
     icon: ""
   },
   {
-    id: 10,
+    id: 11,
     title: "Radio d'Istituto",
     description: "Riapertura e gestione della radio scolastica con programmi curati dagli studenti dove si garantisce supervisione e trasparenza.",
     status: "locked",
