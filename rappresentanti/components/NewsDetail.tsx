@@ -83,7 +83,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ news, onBack }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
-                        className="font-serif text-xl md:text-2xl leading-relaxed opacity-90 space-y-6 news-content"
+                        className="font-sans text-xl md:text-2xl leading-relaxed opacity-90 space-y-6 news-content"
                         dangerouslySetInnerHTML={{ __html: news.content }}
                     />
 
