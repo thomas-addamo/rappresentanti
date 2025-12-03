@@ -6,33 +6,33 @@ const reps: Representative[] = [
   {
     id: 1,
     name: "Giulio Castellani",
-    role: "4A LES",
-    description: "Coordina i social media e si assicura che ogni voce venga ascoltata durante le assemblee.",
-    image: "https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/caste.jpg",
+    role: "4A LSA",
+    description: "Si occupa della comunicazione tramite email, coordina le attività e supporta il gruppo nel mantenimento degli obiettivi.",
+    image: "https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/castellani.jpg",
     instaHandle: "@caaste.e"
   },
   {
     id: 2,
     name: "Emma Cirafici",
-    role: "4A LSA",
-    description: "Organizzatrice nata. Il suo obiettivo è riportare i tornei sportivi interclasse e le feste d'istituto.",
-    image: "https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/emma.jpg",
+    role: "4A LES",
+    description: "Gestisce collaborazioni e partnership e si occupa dell’organizzazione e del coordinamento degli eventi.",
+    image: "https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/emmaaa.jpg",
     instaHandle: "@ciraficiemma_"
   },
   {
     id: 3,
     name: "Eleonora Schirru",
     role: "5A INFO",
-    description: "Il punto di riferimento per problemi con i professori e proposte per nuove attività laboratoriali.",
-    image: "https://picsum.photos/400/600?random=3",
+    description: "Da tre anni coordina la rappresentanza studentesca. Cura la comunicazione interna e i rapporti con il Comune di Nichelino.",
+    image: "https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/a29d99a2-c1ae-4337-851b-cdbe4758706c.jpg",
     instaHandle: "@schirrulele"
   },
   {
     id: 4,
     name: "Nicol Polizzi",
     role: "4B LES",
-    description: "Si batte per macchinette migliori, bagni funzionanti e spazi comuni più accoglienti.",
-    image: "https://picsum.photos/400/600?random=4",
+    description: "Fornisce supporto consulenziale, offre indicazioni strategiche e prende contatto con persone e realtà utili ai progetti del gruppo.",
+    image: "https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/nicol.jpg",
     instaHandle: "@_nicolpolizzi_"
   }
 ];
