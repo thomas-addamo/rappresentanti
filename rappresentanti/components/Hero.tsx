@@ -39,7 +39,7 @@ const Hero: React.FC = () => {
             transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
             className="font-sans text-xs md:text-sm uppercase tracking-[0.3em] text-primary/60"
           >
-            Istituto J.C. Maxwell
+            Rappresentanti Maxwell
           </motion.p>
         </div>
 
