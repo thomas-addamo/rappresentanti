@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
             <span className="font-serif italic text-2xl">Rappresentanti.</span>
           </div>
           <p className="font-sans text-xs opacity-60 max-w-[200px] text-center md:text-left hidden md:block">
-            La voce degli studenti dell'Istituto J.C. Maxwell.
+            La voce degli studenti dell'Istituto Maxwell.
           </p>
         </div>
 
@@ -32,6 +32,19 @@ const Footer: React.FC = () => {
           <a href="https://instagram.com/rappresentanti.maxwell" target="_blank" rel="noopener noreferrer" className="font-sans text-sm tracking-widest hover:opacity-70 transition-opacity border-b border-paper/20 pb-1">
             @rappresentanti.maxwell
           </a>
+          <span className="font-sans text-[10px] uppercase tracking-[0.2em] opacity-40 mt-4">Scrivici una mail</span>
+          <a href="mailto:info@rappresentantimaxwell.it" className="font-sans text-sm tracking-widest hover:opacity-70 transition-opacity border-b border-paper/20 pb-1">
+            info@rappresentantimaxwell.it
+          </a>
+        </div>
+
+        {/* Disclaimer */}
+        <div className="col-span-1 md:col-span-3 mt-8 pt-8 border-t border-paper/10 w-full text-center">
+          <p className="font-sans text-[10px] opacity-40 uppercase tracking-wider">
+            Il presente sito è gestito autonomamente dai rappresentanti d’istituto e non costituisce un canale ufficiale dell’Istituto.
+            L’istituto scolastico non è in alcun modo responsabile dei contenuti pubblicati né delle informazioni fornite su questa piattaforma.
+            Il nome dell’istituto è utilizzato esclusivamente per indicare l’ambito di rappresentanza studentesca.
+          </p>
         </div>
 
       </div>

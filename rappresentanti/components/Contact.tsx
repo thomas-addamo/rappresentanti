@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
     const fromEmail = String(data.get('email') || '').trim();
     const message = String(data.get('message') || '').trim();
 
-    const EMAIL_TO = 'rappresentanti.maxwelll@gmail.com';
+    const EMAIL_TO = 'info@rappresentantimaxwell.it';
 
     const pubKey = process.env.EMAILJS_PUBLIC_KEY as string | undefined;
     const serviceId = process.env.EMAILJS_SERVICE_ID as string | undefined;
