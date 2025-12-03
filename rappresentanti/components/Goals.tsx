@@ -6,36 +6,71 @@ import { Goal } from '../types';
 const goals: Goal[] = [
   {
     id: 1,
-    title: "Assemblea di Benvenuto",
-    description: "Organizzazione della prima assemblea plenaria in presenza post-estate.",
+    title: "Apertura sito web dei rappresentanti",
+    description: "Spazio dedicato agli studenti per un costante aggiornamento da parte dei rappresentanti.",
     status: "achieved",
     icon: ""
   },
   {
     id: 2,
-    title: "Nuove Macchinette",
-    description: "Installazione distributori con opzioni gluten-free e prezzi bloccati.",
-    status: "achieved",
+    title: "Merch d'Istituto",
+    description: "Creazione, gestione e vendita di prodotti personalizzati della scuola grazie ad aziende in collaborazione.",
+    status: "in-progress",
     icon: ""
   },
   {
     id: 3,
-    title: "Ristrutturazione Palestra",
-    description: "Fondi approvati dal consiglio. In attesa di inizio lavori.",
+    title: "Annuario scolastico",
+    description: "Realizzazione dell'annuario con foto, ricordi e contributi delle classi.",
     status: "in-progress",
     icon: ""
   },
   {
     id: 4,
-    title: "Merch d'Istituto",
-    description: "Felpe e magliette personalizzate. Design contest in arrivo.",
+    title: "Feste d'Istituto",
+    description: "Organizzazione di feste scolastiche e dei prom con altri istituti nel territorio.",
     status: "in-progress",
     icon: ""
   },
   {
     id: 5,
-    title: "Giornata dell'Arte",
-    description: "Evento di fine anno con musica e mostre.",
+    title: "Diritti e doveri dello studente",
+    description: "Pubblicazione su Instagram di contenuti chiari e accessibili per informare tutta la comunità scolastica.",
+    status: "in-progress",
+    icon: ""
+  },
+  {
+    id: 6,
+    title: "Collaborazione Istituzionale",
+    description: "Progetti e iniziative in coordinamento con il Comune di Nichelino.",
+    status: "locked",
+    icon: ""
+  },
+  {
+    id: 7,
+    title: "Tornei studenteschi",
+    description: "Attività sportive extrascolastiche aperte alle classi e contro istituti del territorio.",
+    status: "locked",
+    icon: ""
+  },
+  {
+    id: 8,
+    title: "Collettivo degli studenti",
+    description: "Gruppo dedicato al confronto, alle idee e alla rappresentanza studentesca. Garantisce la formazione per diventare futuri rappresentanti.",
+    status: "locked",
+    icon: ""
+  },
+  {
+    id: 9,
+    title: "Co-gestione",
+    description: "Spazi di collaborazione tra studenti e scuola per la gestione di attività e progetti.",
+    status: "locked",
+    icon: ""
+  },
+  {
+    id: 10,
+    title: "Radio d'Istituto",
+    description: "Riapertura e gestione della radio scolastica con programmi curati dagli studenti dove si garantisce supervisione e trasparenza.",
     status: "locked",
     icon: ""
   }
@@ -127,7 +162,7 @@ const Goals: React.FC = () => {
                   </div>
 
                   <p className={`font-sans leading-relaxed text-sm md:text-base ${isLocked ? 'text-gray-400 italic' : 'text-gray-600'}`}>
-                    {isLocked ? "Obiettivo non ancora sbloccato. Completare i precedenti per rivelare i dettagli." : goal.description}
+                    {isLocked ? "Obiettivo non ancora sbloccato." : goal.description}
                   </p>
 
                   {/* Progress Bar for In-Progress items */}
