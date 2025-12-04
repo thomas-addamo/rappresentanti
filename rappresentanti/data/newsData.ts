@@ -3,7 +3,7 @@ import { NewsItem } from '../types';
 export const newsData: NewsItem[] = [
   {
     id: 1,
-    date: "3 Dic 2025",
+    date: "4 Dic 2025",
     category: "Comunicazione",
     title: "Apertura nuovo sito web",
     excerpt: "Si comunica l'apertura del nuovo sito web dei Rappresentanti d'Istituto.",
