@@ -4,9 +4,17 @@ import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [showPrivacyError, setShowPrivacyError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!privacyAccepted) {
+      setShowPrivacyError(true);
+      return;
+    }
+
     setFormState('sending');
 
     const form = e.currentTarget;
@@ -119,6 +127,35 @@ ${message}`;
             >
               Il tuo messaggio
             </label>
+          </div>
+
+          <div className="flex flex-col gap-2 pt-2">
+            <div className="flex items-start gap-4">
+              <div className="relative flex items-center mt-1">
+                <input
+                  type="checkbox"
+                  id="privacy"
+                  checked={privacyAccepted}
+                  onChange={(e) => {
+                    setPrivacyAccepted(e.target.checked);
+                    if (e.target.checked) setShowPrivacyError(false);
+                  }}
+                  className={`peer h-5 w-5 cursor-pointer appearance-none border-2 bg-transparent transition-all checked:border-paper checked:bg-paper hover:border-paper focus:outline-none focus:ring-2 focus:ring-paper/50 focus:ring-offset-2 focus:ring-offset-primary ${showPrivacyError ? 'border-red-500' : 'border-paper/50'}`}
+                />
+                <Check
+                  size={14}
+                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary opacity-0 transition-opacity peer-checked:opacity-100"
+                />
+              </div>
+              <label htmlFor="privacy" className="cursor-pointer text-base text-paper/80 font-sans leading-tight">
+                Dichiaro di aver letto l’<a href="#privacy-policy" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">Informativa Privacy</a> e acconsento al trattamento dei dati personali per essere ricontattato.
+              </label>
+            </div>
+            {showPrivacyError && (
+              <p className="text-red-500 text-sm font-sans ml-9">
+                Devi accettare l'informativa sulla privacy per inviare il messaggio.
+              </p>
+            )}
           </div>
 
           <div className="flex justify-center">

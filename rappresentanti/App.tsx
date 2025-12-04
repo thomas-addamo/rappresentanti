@@ -9,13 +9,32 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import NewsDetail from './components/NewsDetail';
 import NewsArchive from './components/NewsArchive';
+import PrivacyPolicy from './components/PrivacyPolicy';
 import { newsData } from './data/newsData';
 
-type AppView = 'home' | 'archive' | 'article';
+type AppView = 'home' | 'archive' | 'article' | 'privacy';
 
 const App: React.FC = () => {
   const [view, setView] = useState<AppView>('home');
   const [selectedNewsId, setSelectedNewsId] = useState<number | null>(null);
+
+  // Handle hash navigation for Privacy Policy
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#privacy-policy') {
+        setView('privacy');
+      } else if (view === 'privacy') {
+        // Only go back to home if we were on privacy and hash changed to something else (or empty)
+        setView('home');
+      }
+    };
+
+    // Check on mount
+    handleHashChange();
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [view]);
 
   // Function to handle opening a specific news item
   const handleOpenNews = (id: number) => {
@@ -30,8 +49,14 @@ const App: React.FC = () => {
 
   // Function to return to home
   const handleBackToHome = () => {
-    setView('home');
-    setSelectedNewsId(null);
+    if (view === 'privacy') {
+      // Remove hash without triggering a reload, but trigger hashchange if needed or just update state
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+      setView('home');
+    } else {
+      setView('home');
+      setSelectedNewsId(null);
+    }
   };
 
   // Find the selected news object based on ID
@@ -46,7 +71,7 @@ const App: React.FC = () => {
          unmounting via conditional rendering or AnimatePresence is fine.
          Here we use AnimatePresence to overlay the other pages.
       */}
-      
+
       <div className={`${view !== 'home' ? 'hidden' : 'block'}`}>
         <Navbar />
         <Hero />
@@ -59,18 +84,25 @@ const App: React.FC = () => {
 
       <AnimatePresence>
         {view === 'article' && selectedNews && (
-          <NewsDetail 
-            key="detail" 
-            news={selectedNews} 
-            onBack={handleBackToHome} 
+          <NewsDetail
+            key="detail"
+            news={selectedNews}
+            onBack={handleBackToHome}
           />
         )}
 
         {view === 'archive' && (
-          <NewsArchive 
-            key="archive" 
-            onBack={handleBackToHome} 
+          <NewsArchive
+            key="archive"
+            onBack={handleBackToHome}
             onOpenNews={handleOpenNews}
+          />
+        )}
+
+        {view === 'privacy' && (
+          <PrivacyPolicy
+            key="privacy"
+            onBack={handleBackToHome}
           />
         )}
       </AnimatePresence>
