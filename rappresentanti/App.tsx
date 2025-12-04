@@ -62,17 +62,26 @@ const App: React.FC = () => {
   // Find the selected news object based on ID
   const selectedNews = newsData.find(n => n.id === selectedNewsId);
 
+  // Lock body scroll when a modal view is active
+  useEffect(() => {
+    if (view !== 'home') {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [view]);
+
   return (
     <main className="antialiased selection:bg-primary selection:text-paper relative">
       {/* 
-         We keep the Main Content rendered but hidden when in sub-pages 
-         to preserve scroll position if we wanted to, 
-         or we can unmount it. For better performance on simple apps, 
-         unmounting via conditional rendering or AnimatePresence is fine.
-         Here we use AnimatePresence to overlay the other pages.
+         We keep the Main Content rendered and visible to preserve scroll position.
+         The sub-pages (article, archive, privacy) are fixed overlays that cover the content.
       */}
 
-      <div className={`${view !== 'home' ? 'hidden' : 'block'}`}>
+      <div>
         <Navbar />
         <Hero />
         <Team />

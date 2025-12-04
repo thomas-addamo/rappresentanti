@@ -10,9 +10,10 @@ interface NewsDetailProps {
 
 const NewsDetail: React.FC<NewsDetailProps> = ({ news, onBack }) => {
     // Scroll to top when mounted
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    // Scroll to top when mounted
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, []);
 
     return (
         <motion.div

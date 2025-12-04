@@ -148,7 +148,7 @@ ${message}`;
                 />
               </div>
               <label htmlFor="privacy" className="cursor-pointer text-base text-paper/80 font-sans leading-tight">
-                Dichiaro di aver letto l’<a href="#privacy-policy" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">Informativa Privacy</a> e acconsento al trattamento dei dati personali per essere ricontattato.
+                Dichiaro di aver letto l’<a href="#privacy-policy" className="underline hover:text-white transition-colors">Informativa Privacy</a> e acconsento al trattamento dei dati personali per essere ricontattato.
               </label>
             </div>
             {showPrivacyError && (
