@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, Variants } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -6,23 +6,42 @@ const Navbar: React.FC = () => {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const [scrolled, setScrolled] = useState(false);
 
+  // Handle scroll states
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() || 0;
-    if (latest > previous && latest > 150) {
-      setHidden(true);
+
+    // Auto-hide logic (disabled when menu is open)
+    if (!isMobileMenuOpen) {
+      if (latest > previous && latest > 150) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
     } else {
       setHidden(false);
     }
 
+    // Blurred background threshold
     if (latest > 50) {
       setScrolled(true);
     } else {
       setScrolled(false);
     }
   });
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -35,7 +54,7 @@ const Navbar: React.FC = () => {
     if (el) {
       setTimeout(() => {
         el.scrollIntoView({ behavior: 'smooth' });
-      }, 300); // Small delay to allow menu closing animation
+      }, 300);
     }
   };
 
@@ -68,6 +87,26 @@ const Navbar: React.FC = () => {
     { label: "Contattaci", id: "contatti" }
   ];
 
+  // Logic for dynamic classes
+  const isTransparent = !scrolled;
+
+  // Background:
+  // - Top: Transparent
+  // - Scrolled: Opaque 'paper-dark' (Grayish) with blur
+  // - Mobile Menu: Transparent (handled by menu overlay)
+  const backgroundClass = isMobileMenuOpen
+    ? 'bg-transparent'
+    : (scrolled ? 'bg-paper-dark/90 backdrop-blur-md shadow-sm' : 'bg-transparent');
+
+  // Text Color:
+  // - Top: Primary (Dark Red/Black-ish) - User requested 'Black', Primary is #4f0006 which is very dark.
+  // - Scrolled: Primary (Red) - User requested 'Red on Gray'.
+  // - Mobile Menu: Paper (White-ish).
+  // We avoid mix-blend-mode to guarantee readability.
+  const textClass = isMobileMenuOpen
+    ? 'text-paper'
+    : 'text-primary';
+
   return (
     <>
       <motion.nav
@@ -78,37 +117,44 @@ const Navbar: React.FC = () => {
         initial="hidden"
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className={`fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-500 ${scrolled ? 'bg-white/10 backdrop-blur-md' : 'bg-transparent'
-          } mix-blend-difference text-white`}
+        className="fixed top-0 left-0 w-full z-50 transition-all duration-500"
       >
-        <button
-          onClick={scrollToTop}
-          className="font-serif text-2xl font-italic tracking-tighter relative z-50 hover:opacity-80 transition-opacity"
-        >
-          Rappresentanti.
-        </button>
+        {/* Background Layer */}
+        <div
+          className={`absolute inset-0 z-0 transition-all duration-500 ease-in-out ${backgroundClass}`}
+        />
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8 font-sans text-sm uppercase tracking-widest">
-          {links.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => scrollToSection(link.id)}
-              className="relative group py-1"
-            >
-              {link.label}
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center ease-out" />
-            </button>
-          ))}
+        {/* Content Layer */}
+        <div className={`relative z-10 px-6 py-4 flex justify-between items-center w-full transition-all duration-500 ${textClass}`}>
+          <button
+            onClick={scrollToTop}
+            className="font-serif text-2xl font-italic tracking-tighter hover:opacity-80 transition-opacity"
+          >
+            Rappresentanti.
+          </button>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex gap-8 font-sans text-sm uppercase tracking-widest">
+            {links.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
+                className="relative group py-1"
+              >
+                {link.label}
+                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-current scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center ease-out" />
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 hover:opacity-70 transition-opacity"
+          >
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden relative z-50 p-2 hover:opacity-70 transition-opacity"
-        >
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
       </motion.nav>
 
       {/* Mobile Full Screen Menu */}
