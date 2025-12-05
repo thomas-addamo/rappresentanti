@@ -126,12 +126,16 @@ const Goals: React.FC = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative pl-8 md:pl-24 group"
               >
-                {/* Connector Node */}
+                {/* Connector Node - Perfectly Centered */}
                 <div
-                  className={`absolute -left-[9px] top-8 md:top-10 w-5 h-5 rounded-full border-4 border-paper z-10 transition-all duration-500
-                    ${isAchieved ? 'bg-primary scale-110 shadow-[0_0_10px_rgba(79,0,6,0.3)]' : isInProgress ? 'bg-orange-500 animate-pulse' : 'bg-gray-300'}
+                  className={`absolute left-[-13px] top-1/2 -translate-y-1/2 w-6 h-6 rounded-full border-[3px] border-paper z-10 transition-all duration-500 shadow-sm
+                    ${isAchieved ? 'bg-primary scale-110 shadow-[0_0_15px_rgba(79,0,6,0.4)] ring-2 ring-primary/20' : isInProgress ? 'bg-orange-500 ring-2 ring-orange-500/20' : 'bg-gray-200'}
                   `}
-                />
+                >
+                  {isInProgress && (
+                    <div className="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-20"></div>
+                  )}
+                </div>
 
                 <motion.div
                   whileHover={{ scale: 1.02, y: -5 }}

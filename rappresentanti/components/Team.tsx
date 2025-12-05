@@ -51,13 +51,13 @@ const Team: React.FC = () => {
         // We add a small buffer (e.g., 50px) to ensure the last item has some breathing room
         const totalWidth = scrollContainerRef.current.scrollWidth;
         const viewportWidth = window.innerWidth;
-        setScrollRange(totalWidth - viewportWidth + (viewportWidth * 0.1)); // Adds 10vw padding end logic
+        setScrollRange(totalWidth - viewportWidth); // Exact scroll to end
       }
     };
-    
+
     // Initial calculation
     updateWidth();
-    
+
     // Recalculate on resize
     window.addEventListener('resize', updateWidth);
     return () => window.removeEventListener('resize', updateWidth);
@@ -73,34 +73,34 @@ const Team: React.FC = () => {
   return (
     <section id="chi-siamo" ref={targetRef} className="relative h-[300vh] bg-primary text-paper">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        
+
         {/* Title positioned absolutely */}
         <div className="absolute top-8 left-6 md:top-12 md:left-12 z-10 mix-blend-overlay pointer-events-none">
-             <h2 className="font-serif text-5xl md:text-8xl opacity-30">I Rappresentanti</h2>
+          <h2 className="font-serif text-5xl md:text-8xl opacity-30">I Rappresentanti</h2>
         </div>
 
-        <motion.div 
+        <motion.div
           ref={scrollContainerRef}
-          style={{ x }} 
+          style={{ x }}
           className="flex gap-8 md:gap-12 pl-[10vw] pr-[10vw]"
         >
           {reps.map((rep) => (
             <div key={rep.id} className="relative w-[85vw] md:w-[30vw] flex-shrink-0 group">
               <div className="w-full h-[55vh] md:h-[60vh] overflow-hidden rounded-sm relative">
-                <img 
-                    src={rep.image} 
-                    alt={rep.name} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105"
+                <img
+                  src={rep.image}
+                  alt={rep.name}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out transform group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-80 md:opacity-60"></div>
-                
+
                 {/* Mobile Title Overlay (easier to read) */}
                 <div className="absolute bottom-4 left-4 md:hidden">
-                   <h3 className="font-serif text-4xl text-paper">{rep.name}</h3>
-                   <p className="font-sans text-xs uppercase tracking-widest text-paper/80">{rep.role}</p>
+                  <h3 className="font-serif text-4xl text-paper">{rep.name}</h3>
+                  <p className="font-sans text-xs uppercase tracking-widest text-paper/80">{rep.role}</p>
                 </div>
               </div>
-              
+
               <div className="mt-6 border-l border-paper/30 pl-4 md:block hidden">
                 <h3 className="font-serif text-4xl md:text-5xl mb-2">{rep.name}</h3>
                 <p className="font-sans text-xs uppercase tracking-widest text-paper/60 mb-4">{rep.role}</p>
@@ -108,21 +108,19 @@ const Team: React.FC = () => {
                   {rep.description}
                 </p>
                 <div className="mt-4 inline-block border border-paper/20 rounded-full px-4 py-1 text-sm font-sans hover:bg-paper hover:text-primary transition-colors cursor-pointer">
-                    {rep.instaHandle}
+                  {rep.instaHandle}
                 </div>
               </div>
 
               {/* Mobile Description (visible below image) */}
               <div className="mt-4 md:hidden pl-2">
-                 <p className="font-sans text-base opacity-90 leading-relaxed mb-3">
+                <p className="font-sans text-base opacity-90 leading-relaxed mb-3">
                   {rep.description}
                 </p>
                 <span className="text-sm font-sans opacity-60 border-b border-paper/30 pb-0.5">{rep.instaHandle}</span>
               </div>
             </div>
           ))}
-          {/* Filler for scroll end */}
-          <div className="w-[5vw] shrink-0"></div>
         </motion.div>
       </div>
     </section>

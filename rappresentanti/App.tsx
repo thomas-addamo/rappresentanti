@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import NewsDetail from './components/NewsDetail';
 import NewsArchive from './components/NewsArchive';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import ScrollToTop from './components/ScrollToTop';
 import { newsData } from './data/newsData';
 
 type AppView = 'home' | 'archive' | 'article' | 'privacy';
@@ -89,6 +90,7 @@ const App: React.FC = () => {
         <News onOpenNews={handleOpenNews} onOpenArchive={handleOpenArchive} />
         <Contact />
         <Footer />
+        <ScrollToTop />
       </div>
 
       <AnimatePresence>

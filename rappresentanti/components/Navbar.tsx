@@ -7,12 +7,20 @@ const Navbar: React.FC = () => {
   const [hidden, setHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const [scrolled, setScrolled] = useState(false);
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() || 0;
     if (latest > previous && latest > 150) {
       setHidden(true);
     } else {
       setHidden(false);
+    }
+
+    if (latest > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
     }
   });
 
@@ -70,7 +78,8 @@ const Navbar: React.FC = () => {
         initial="hidden"
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center mix-blend-difference text-white"
+        className={`fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-500 ${scrolled ? 'bg-white/10 backdrop-blur-md' : 'bg-transparent'
+          } mix-blend-difference text-white`}
       >
         <button
           onClick={scrollToTop}
@@ -85,14 +94,10 @@ const Navbar: React.FC = () => {
             <button
               key={link.id}
               onClick={() => scrollToSection(link.id)}
-              className="relative overflow-hidden group"
+              className="relative group py-1"
             >
-              <div className="transition-transform duration-300 group-hover:-translate-y-full">
-                {link.label}
-              </div>
-              <div className="absolute top-0 left-0 transition-transform duration-300 translate-y-full group-hover:translate-y-0">
-                {link.label}
-              </div>
+              {link.label}
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center ease-out" />
             </button>
           ))}
         </div>
