@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
         {/* Disclaimer */}
         <div className="col-span-1 md:col-span-3 mt-8 pt-8 border-t border-paper/10 w-full text-center">
           <p className="font-sans text-[12px] opacity-40 tracking-wider">
-            Il presente sito è gestito autonomamente dai rappresentanti d’istituto e non costituisce un canale ufficiale dell’Istituto.
+            Il presente sito è gestito autonomamente dai rappresentanti d’istituto e non costituisce un canale ufficiale dell’Istituto Maxwell di Nichelino.
             L’istituto scolastico non è in alcun modo responsabile dei contenuti pubblicati né delle informazioni fornite su questa piattaforma.
             Il nome dell’istituto è utilizzato esclusivamente per indicare l’ambito di rappresentanza studentesca. 
             Al termine del mandato, le responsabilità connesse alla gestione del sito decadono automaticamente per i rappresentanti uscenti.
