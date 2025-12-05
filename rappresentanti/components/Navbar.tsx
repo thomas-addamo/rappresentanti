@@ -16,6 +16,11 @@ const Navbar: React.FC = () => {
     }
   });
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsMobileMenuOpen(false);
+  };
+
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
     const el = document.getElementById(id);
@@ -62,29 +67,38 @@ const Navbar: React.FC = () => {
           visible: { y: 0 },
           hidden: { y: "-100%" },
         }}
+        initial="hidden"
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
         className="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center mix-blend-difference text-white"
       >
-        <div className="font-serif text-2xl font-italic tracking-tighter relative z-50">
+        <button
+          onClick={scrollToTop}
+          className="font-serif text-2xl font-italic tracking-tighter relative z-50 hover:opacity-80 transition-opacity"
+        >
           Rappresentanti.
-        </div>
+        </button>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 font-sans text-sm uppercase tracking-widest">
           {links.map((link) => (
-            <button 
-              key={link.id} 
-              onClick={() => scrollToSection(link.id)} 
-              className="hover:opacity-60 transition-opacity"
+            <button
+              key={link.id}
+              onClick={() => scrollToSection(link.id)}
+              className="relative overflow-hidden group"
             >
-              {link.label}
+              <div className="transition-transform duration-300 group-hover:-translate-y-full">
+                {link.label}
+              </div>
+              <div className="absolute top-0 left-0 transition-transform duration-300 translate-y-full group-hover:translate-y-0">
+                {link.label}
+              </div>
             </button>
           ))}
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button 
+        <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="md:hidden relative z-50 p-2 hover:opacity-70 transition-opacity"
         >
@@ -102,12 +116,12 @@ const Navbar: React.FC = () => {
             exit="closed"
             className="fixed inset-0 bg-primary z-40 flex flex-col justify-center items-center text-paper"
           >
-             {/* Decorative Background */}
-             <div className="absolute inset-0 pointer-events-none opacity-5 overflow-hidden">
-                <svg className="w-full h-full scale-150" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M0 100 C 20 0 50 0 100 100 Z" fill="#f5f2eb" />
-                </svg>
-             </div>
+            {/* Decorative Background */}
+            <div className="absolute inset-0 pointer-events-none opacity-5 overflow-hidden">
+              <svg className="w-full h-full scale-150" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0 100 C 20 0 50 0 100 100 Z" fill="#f5f2eb" />
+              </svg>
+            </div>
 
             <div className="flex flex-col gap-8 text-center relative z-10">
               {links.map((link, i) => (
@@ -123,7 +137,7 @@ const Navbar: React.FC = () => {
               ))}
             </div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
               transition={{ delay: 0.6 }}
