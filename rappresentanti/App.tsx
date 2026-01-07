@@ -12,6 +12,8 @@ import NewsArchive from './components/NewsArchive';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import ScrollToTop from './components/ScrollToTop';
 import { newsData } from './data/newsData';
+import MerchModal from './components/MerchModal';
+import MerchSection from './components/MerchSection';
 
 type AppView = 'home' | 'archive' | 'article' | 'privacy';
 
@@ -86,6 +88,7 @@ const App: React.FC = () => {
         <Navbar />
         <Hero />
         <Team />
+        <MerchSection />
         <Goals />
         <News onOpenNews={handleOpenNews} onOpenArchive={handleOpenArchive} />
         <Contact />
@@ -117,6 +120,8 @@ const App: React.FC = () => {
           />
         )}
       </AnimatePresence>
+      
+      <MerchModal />
     </main>
   );
 };

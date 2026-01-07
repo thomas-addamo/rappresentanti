@@ -15,7 +15,7 @@ const goals: Goal[] = [
     id: 2,
     title: "Merch d'Istituto",
     description: "Creazione, gestione e vendita di prodotti personalizzati della scuola grazie ad aziende in collaborazione.",
-    status: "in-progress",
+    status: "achieved",
     icon: ""
   },
   {

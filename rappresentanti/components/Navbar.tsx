@@ -82,6 +82,7 @@ const Navbar: React.FC = () => {
 
   const links = [
     { label: "Chi Siamo", id: "chi-siamo" },
+    { label: "Merch", id: "merch" },
     { label: "Obiettivi", id: "obiettivi" },
     { label: "News", id: "news" },
     { label: "Contattaci", id: "contatti" }
