@@ -29,8 +29,8 @@ const MerchSection: React.FC = () => {
         
         {/* Placeholder Text for Image Area (Desktop Only) */}
         <div className="absolute bottom-12 right-12 z-20 text-right hidden md:block">
-          <p className="font-serif text-5xl text-[#f5f2eb]/10 rotate-[-5deg]">
-            New Drop
+          <p className="font-serif text-5xl text-[#4f0006] rotate-[-5deg]">
+            Novità
           </p>
         </div>
       </div>
