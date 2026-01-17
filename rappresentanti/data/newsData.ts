@@ -2,6 +2,23 @@ import { NewsItem } from '../types';
 
 export const newsData: NewsItem[] = [
   {
+    id: 3,
+    date: "17 Gen 2026",
+    category: "Eventi",
+    title: "Convocazione Assemblea d'Istituto",
+    excerpt: "Tutte le informazioni sulla prossima Assemblea d'Istituto di Gennaio.",
+    author: "Rappresentanti",
+    featured: true,
+    content: `
+      <p>Cari studenti,</p>
+      <p>Vi comunichiamo che è stata convocata l'<b>Assemblea d'Istituto</b> per il mese di Gennaio.</p>
+      <p>Questo incontro rappresenta un momento fondamentale di democrazia scolastica, dove avremo modo di discutere delle prossime iniziative e raccogliere le vostre opinioni.</p>
+      <p>Restate sintonizzati per ulteriori dettagli riguardanti l'ordine del giorno e le modalità di svolgimento.</p>
+      <p>Si ricorda che la partecipazione è aperta ai <b>Rappresentanti di Classe</b>.</p>
+      <p>I vostri Rappresentanti.</p>
+    `
+  },
+  {
     id: 2,
     date: "7 Gen 2026",
     category: "Merchandising",
