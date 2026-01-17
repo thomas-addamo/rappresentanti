@@ -127,7 +127,7 @@ const MerchModal: React.FC = () => {
                 className="w-full md:w-auto px-8 py-4 md:px-10 md:py-5 bg-[#f5f2eb] text-[#4f0006] hover:bg-white font-sans font-bold text-lg md:text-xl rounded-full transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-3 group"
               >
                 <ShoppingBag size={24} className="group-hover:animate-bounce" />
-                ACQUISTA_ORA
+                ACQUISTA ORA
                 <ArrowRight size={24} className="-rotate-45 group-hover:rotate-0 transition-transform duration-300" />
               </a>
               

@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, Variants } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onOpenEvents?: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onOpenEvents }) => {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -50,6 +54,12 @@ const Navbar: React.FC = () => {
 
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
+
+    if (id === 'events') {
+      if (onOpenEvents) onOpenEvents();
+      return;
+    }
+
     const el = document.getElementById(id);
     if (el) {
       setTimeout(() => {
@@ -84,6 +94,7 @@ const Navbar: React.FC = () => {
     { label: "Chi Siamo", id: "chi-siamo" },
     { label: "Merch", id: "merch" },
     { label: "Obiettivi", id: "obiettivi" },
+    { label: "Eventi", id: "events" },
     { label: "News", id: "news" },
     { label: "Contattaci", id: "contatti" }
   ];
@@ -118,7 +129,7 @@ const Navbar: React.FC = () => {
         initial="hidden"
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-0 left-0 w-full z-50 transition-all duration-500"
+        className="w-full z-50 transition-all duration-500"
       >
         {/* Background Layer */}
         <div

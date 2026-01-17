@@ -12,10 +12,13 @@ import NewsArchive from './components/NewsArchive';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import ScrollToTop from './components/ScrollToTop';
 import { newsData } from './data/newsData';
+import { eventsData } from './data/eventsData';
 import MerchModal from './components/MerchModal';
 import MerchSection from './components/MerchSection';
+import Events from './components/Events';
+import EventReminder from './components/EventReminder';
 
-type AppView = 'home' | 'archive' | 'article' | 'privacy';
+type AppView = 'home' | 'archive' | 'article' | 'privacy' | 'events';
 
 const App: React.FC = () => {
   const [view, setView] = useState<AppView>('home');
@@ -50,6 +53,11 @@ const App: React.FC = () => {
     setView('archive');
   };
 
+  // Function to handle opening events
+  const handleOpenEvents = () => {
+    setView('events');
+  };
+
   // Function to return to home
   const handleBackToHome = () => {
     if (view === 'privacy') {
@@ -77,15 +85,49 @@ const App: React.FC = () => {
     };
   }, [view]);
 
+  // Event Reminder Logic
+  const [upcomingEvent, setUpcomingEvent] = useState<typeof eventsData[0] | null>(null);
+  const [showReminder, setShowReminder] = useState(false);
+
+  useEffect(() => {
+    const now = new Date();
+    const futureEvents = eventsData
+      .filter(e => new Date(e.date) > now)
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+    if (futureEvents.length > 0) {
+      const event = futureEvents[0];
+      const eventDate = new Date(event.date);
+      const diff = eventDate.getTime() - now.getTime();
+      const daysUntil = diff / (1000 * 60 * 60 * 24);
+
+      if (daysUntil <= 7) {
+        setUpcomingEvent(event);
+        setShowReminder(true);
+      }
+    }
+  }, []);
+
   return (
     <main className="antialiased selection:bg-primary selection:text-paper relative">
       {/* 
-         We keep the Main Content rendered and visible to preserve scroll position.
-         The sub-pages (article, archive, privacy) are fixed overlays that cover the content.
+         Fixed Header Wrapper:
+         Contains the dismissible Reminder and the Navbar.
+         This ensures the Navbar is always positioned correctly relative to the Reminder.
       */}
+      <div className="fixed top-0 left-0 w-full z-50 flex flex-col">
+        <AnimatePresence>
+          {showReminder && upcomingEvent && view === 'home' && (
+            <EventReminder 
+              event={upcomingEvent}
+              onDismiss={() => setShowReminder(false)}
+            />
+          )}
+        </AnimatePresence>
+        <Navbar onOpenEvents={handleOpenEvents} />
+      </div>
 
       <div>
-        <Navbar />
         <Hero />
         <Team />
         <MerchSection />
@@ -116,6 +158,13 @@ const App: React.FC = () => {
         {view === 'privacy' && (
           <PrivacyPolicy
             key="privacy"
+            onBack={handleBackToHome}
+          />
+        )}
+        
+        {view === 'events' && (
+          <Events
+            key="events"
             onBack={handleBackToHome}
           />
         )}
