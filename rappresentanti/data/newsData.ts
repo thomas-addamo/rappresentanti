@@ -1,6 +1,22 @@
 import { NewsItem } from '../types';
 
 export const newsData: NewsItem[] = [
+    {
+    id: 4,
+    date: "22 Gen 2026",
+    category: "Iscrizioni",
+    title: "Apertura Iscrizioni Collettivo Studentesco",
+    excerpt: "Sono ufficialmente aperte le iscrizioni per il Collettivo Studentesco. Unisciti a noi per partecipare attivamente alla vita scolastica!",
+    author: "Rappresentanti",
+    featured: true,
+    content: `
+      <p>Cari studenti,</p>
+      <p>Vi comunichiamo che sono ufficialmente aperte le iscrizioni per il <b>Collettivo Studentesco</b>.</p>
+      <p>Il collettivo è un'opportunità fondamentale per confrontarsi, organizzare eventi e portare avanti le istanze degli studenti.</p>
+      <p>Per iscriverti, compila il form che trovi nelle nostre storie di Instagram o contatta direttamente un rappresentante.</p>
+      <p>Ti aspettiamo!</p>
+    `
+  },
   {
     id: 3,
     date: "17 Gen 2026",
