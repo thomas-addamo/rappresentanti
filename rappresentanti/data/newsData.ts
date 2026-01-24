@@ -2,6 +2,22 @@ import { NewsItem } from '../types';
 
 export const newsData: NewsItem[] = [
     {
+    id: 5,
+    date: "24 Gen 2026",
+    category: "Iscrizioni",
+    title: "Iscrizioni Future League 2026",
+    excerpt: "Sono aperte le iscrizioni per partecipare come squadra ufficiale d'Istituto alla Future League 2026.",
+    author: "Rappresentanti",
+    featured: true,
+    content: `
+      <p>Cari studenti,</p>
+      <p>Siamo felici di annunciare che sono ufficialmente aperte le iscrizioni per entrare a far parte della squadra ufficiale d'Istituto che parteciperà alla <b>Future League 2026</b>.</p>
+      <p>Questa competizione vedrà coinvolte numerose scuole della città, tra cui diverse realtà di Torino, in una sfida entusiasmante.</p>
+      <p>Per iscrivervi, vi invitiamo a visitare il nostro profilo Instagram dove troverete il link dedicato nel bio.</p>
+      <p>Mettetevi in gioco!</p>
+    `
+  },
+    {
     id: 4,
     date: "22 Gen 2026",
     category: "Iscrizioni",
