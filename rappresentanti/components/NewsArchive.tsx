@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { newsData } from '../data/newsData';
+import { isNewNews } from '../utils/dateHelpers';
 
 interface NewsArchiveProps {
   onBack: () => void;
@@ -68,8 +69,13 @@ const NewsArchive: React.FC<NewsArchiveProps> = ({ onBack, onOpenNews }) => {
               className="group border-t border-primary/20 py-8 md:py-12 cursor-pointer hover:bg-primary/5 transition-colors -mx-4 px-4 md:-mx-8 md:px-8 rounded-xl"
             >
               <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12">
-                <div className="w-32 font-sans text-sm uppercase tracking-widest opacity-60 shrink-0">
-                  {news.date}
+                <div className="w-32 font-sans text-sm uppercase tracking-widest opacity-60 shrink-0 flex flex-col gap-1">
+                  <span>{news.date}</span>
+                  {isNewNews(news.date) && (
+                    <span className="text-primary font-bold text-[0.6rem] border border-primary px-1 w-fit rounded animate-pulse">
+                      NOVITÀ
+                    </span>
+                  )}
                 </div>
                 <div className="flex-1">
                   <h2 className="font-serif text-3xl md:text-5xl text-primary mb-2 group-hover:italic transition-all">

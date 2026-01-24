@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { newsData } from '../data/newsData';
+import { isNewNews } from '../utils/dateHelpers';
 
 interface NewsProps {
     onOpenNews: (id: number) => void;
@@ -43,7 +44,14 @@ const News: React.FC<NewsProps> = ({ onOpenNews, onOpenArchive }) => {
                             <div>
                                 <div className="border-t border-primary/80 pt-4 flex justify-between font-sans text-xs uppercase tracking-widest mb-4 opacity-70 group-hover:opacity-100 transition-opacity">
                                     <span className="bg-primary/10 px-2 py-1 rounded">{item.category}</span>
-                                    <span className="py-1">{item.date}</span>
+                                    <div className="flex items-center gap-2">
+                                        <span className="py-1">{item.date}</span>
+                                        {isNewNews(item.date) && (
+                                            <span className="bg-primary text-paper px-2 py-0.5 text-[0.6rem] font-bold rounded-full animate-pulse">
+                                                NOVITÀ
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
                                 <h3 className="font-serif text-3xl md:text-4xl mb-4 leading-tight transition-all duration-300 decoration-primary underline-offset-4 group-hover:underline group-hover:translate-x-2 group-hover:scale-[1.02] origin-left group-hover:drop-shadow-sm">
                                     {item.title}

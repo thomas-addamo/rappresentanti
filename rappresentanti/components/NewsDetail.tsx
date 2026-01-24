@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Tag, User } from 'lucide-react';
 import { NewsItem } from '../types';
+import { isNewNews } from '../utils/dateHelpers';
 
 interface NewsDetailProps {
     news: NewsItem;
@@ -46,9 +47,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ news, onBack }) => {
                         transition={{ delay: 0.2 }}
                         className="flex flex-wrap gap-4 mb-8 font-sans text-sm uppercase tracking-widest text-primary/60"
                     >
-                        <span className="flex items-center gap-2 border border-primary/20 px-3 py-1 rounded-full">
-                            <Calendar size={14} /> {news.date}
-                        </span>
+                        <div className="flex items-center gap-2">
+                            <span className="flex items-center gap-2 border border-primary/20 px-3 py-1 rounded-full">
+                                <Calendar size={14} /> {news.date}
+                            </span>
+                            {isNewNews(news.date) && (
+                                <span className="bg-primary text-paper px-2 py-0.5 text-[0.6rem] font-bold rounded-full animate-pulse">
+                                    NOVITÀ
+                                </span>
+                            )}
+                        </div>
                         <span className="flex items-center gap-2 border border-primary/20 px-3 py-1 rounded-full">
                             <Tag size={14} /> {news.category}
                         </span>
