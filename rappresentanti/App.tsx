@@ -13,8 +13,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import ScrollToTop from './components/ScrollToTop';
 import { newsData } from './data/newsData';
 import { eventsData } from './data/eventsData';
-import MerchModal from './components/MerchModal';
-import MerchSection from './components/MerchSection';
+
 import Events from './components/Events';
 import EventReminder from './components/EventReminder';
 
@@ -130,7 +129,6 @@ const App: React.FC = () => {
       <div>
         <Hero />
         <Team />
-        <MerchSection />
         <Goals />
         <News onOpenNews={handleOpenNews} onOpenArchive={handleOpenArchive} />
         <Contact />
@@ -169,8 +167,6 @@ const App: React.FC = () => {
           />
         )}
       </AnimatePresence>
-      
-      <MerchModal />
     </main>
   );
 };

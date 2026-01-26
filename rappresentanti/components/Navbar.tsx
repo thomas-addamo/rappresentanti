@@ -92,7 +92,6 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents }) => {
 
   const links = [
     { label: "Chi Siamo", id: "chi-siamo" },
-    { label: "Merch", id: "merch" },
     { label: "Obiettivi", id: "obiettivi" },
     { label: "Eventi", id: "events" },
     { label: "News", id: "news" },
