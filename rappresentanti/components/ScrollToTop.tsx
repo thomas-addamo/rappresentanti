@@ -32,7 +32,7 @@ const ScrollToTop: React.FC = () => {
                     whileTap={{ scale: 0.9 }}
                     transition={{ duration: 0.3, ease: "backOut" }}
                     onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 z-40 p-3 bg-primary text-paper rounded-full shadow-lg hover:bg-primary/90 transition-colors mix-blend-difference"
+                    className="fixed bottom-8 left-8 z-40 p-3 bg-primary text-paper rounded-full shadow-lg hover:bg-primary/90 transition-colors mix-blend-difference"
                     aria-label="Torna su"
                 >
                     <ArrowUp size={24} strokeWidth={2} />

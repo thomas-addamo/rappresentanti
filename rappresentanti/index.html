@@ -67,24 +67,35 @@
         scrollbar-width: none;
       }
     </style>
-    <!-- Google Analytics 4 -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-B9MMSBQ1T7"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+  <script type="text/javascript" src="https://embeds.iubenda.com/widgets/38b5cce0-be4d-4acd-8abf-1c128ff43c03.js"></script>
 
-      gtag("config", "G-B9MMSBQ1T7");
+    <!-- Google Analytics 4 code blocked -->
+    <script async type="text/plain" data-cookiecategory="analytics" src="https://www.googletagmanager.com/gtag/js?id=G-B9MMSBQ1T7"></script>
+    <script type="text/plain" data-cookiecategory="analytics">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B9MMSBQ1T7');
     </script>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
+    
+    <!-- Iubenda Embed Loader -->
+    <script type="text/javascript">
+    (function (w,d) {
+      var loader = function () {
+        var s = d.createElement("script"),
+            tag = d.getElementsByTagName("script")[0];
+        s.src="https://cdn.iubenda.com/iubenda.js";
+        tag.parentNode.insertBefore(s,tag);
+      };
+      if(w.addEventListener){w.addEventListener("load", loader, false);}
+      else if(w.attachEvent){w.attachEvent("onload", loader);}
+      else{w.onload = loader;}
+    })(window, document);
+    </script>
   </body>
 </html>

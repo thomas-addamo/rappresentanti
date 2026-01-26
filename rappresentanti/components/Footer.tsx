@@ -24,6 +24,10 @@ const Footer: React.FC = () => {
           <div className="font-serif text-lg opacity-80">
             Created by Thomas Addamo.
           </div>
+          <div className="flex gap-4 mt-4">
+             <a href="https://www.iubenda.com/privacy-policy/14149172" target="_blank" rel="noopener noreferrer" className="font-sans text-[10px] uppercase tracking-widest opacity-60 hover:opacity-100" title="Privacy Policy">Privacy Policy</a>
+             <a href="https://www.iubenda.com/privacy-policy/14149172/cookie-policy" target="_blank" rel="noopener noreferrer" className="font-sans text-[10px] uppercase tracking-widest opacity-60 hover:opacity-100" title="Cookie Policy">Cookie Policy</a>
+          </div>
         </div>
 
         {/* Socials */}
