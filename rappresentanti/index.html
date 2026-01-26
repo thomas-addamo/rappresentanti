@@ -1,70 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/favicon1.svg"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sito ufficiale dei Rappresentanti d'Istituto. Rimani aggiornato su notizie, eventi e iniziative della scuola."
+    />
+    <title>Rappresentanti d'Istituto</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/favicon1.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sito ufficiale dei Rappresentanti d'Istituto. Rimani aggiornato su notizie, eventi e iniziative della scuola." />
-  <title>Rappresentanti d'Istituto</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#4f0006',
-            paper: '#f5f2eb',
-            'paper-dark': '#e6e1d6',
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4f0006",
+              paper: "#f5f2eb",
+              "paper-dark": "#e6e1d6",
+            },
+            fontFamily: {
+              serif: ['"Instrument Serif"', "serif"],
+              sans: ['"Instrument Sans"', "sans-serif"],
+            },
+            animation: {
+              "spin-slow": "spin 12s linear infinite",
+            },
           },
-          fontFamily: {
-            serif: ['"Instrument Serif"', 'serif'],
-            sans: ['"Instrument Sans"', 'sans-serif'],
-          },
-          animation: {
-            'spin-slow': 'spin 12s linear infinite',
-          }
         },
-      },
-    }
-  </script>
+      };
+    </script>
 
-  <!-- Google Fonts: Instrument Serif & Instrument Sans -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
-    rel="stylesheet">
+    <!-- Google Fonts: Instrument Serif & Instrument Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    body {
-      background-color: #f5f2eb;
-      color: #1a1a1a;
-      overflow-x: hidden;
-    }
+    <style>
+      body {
+        background-color: #f5f2eb;
+        color: #1a1a1a;
+        overflow-x: hidden;
+      }
 
-    ::selection {
-      background-color: #4f0006;
-      color: #f5f2eb;
-    }
+      ::selection {
+        background-color: #4f0006;
+        color: #f5f2eb;
+      }
 
-    /* Hide scrollbar for clean look in some containers */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
+      /* Hide scrollbar for clean look in some containers */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
 
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-  </style>
-</head>
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <!-- Google Analytics 4 -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-B9MMSBQ1T7"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+      gtag("config", "G-B9MMSBQ1T7");
+    </script>
+  </head>
 
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
