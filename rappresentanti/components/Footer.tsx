@@ -17,16 +17,31 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Copyright */}
-        <div className="flex flex-col items-center justify-center text-center">
-          <div className="font-sans text-[10px] uppercase tracking-[0.2em] opacity-40 mb-2">
-            &copy; {new Date().getFullYear()} Tutti i diritti riservati
+        <div className="flex flex-col items-center justify-center text-center gap-4">
+          <div className="flex flex-col items-center gap-2">
+            <div className="font-sans text-xs opacity-70 flex flex-wrap justify-center items-center gap-1">
+              <a href="https://rappresentantimaxwell.it" className="hover:text-white transition-colors">Rappresentanti Maxwell</a> 
+              <span>&copy; {new Date().getFullYear()} by</span> 
+              <span className="hover:text-white transition-colors cursor-default">Thomas Addamo</span>
+            </div>
+            
+            <div className="flex flex-wrap justify-center items-center gap-1.5 font-sans text-xs opacity-60">
+              <span>is licensed under</span> 
+              <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors border-b border-dotted border-paper/40 hover:border-white">
+                CC BY-NC-ND 4.0
+              </a>
+              <div className="flex items-center gap-[0.2em] opacity-80">
+                 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="cc" className="h-4 w-4" />
+                 <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="by" className="h-4 w-4" />
+                 <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="nc" className="h-4 w-4" />
+                 <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="nd" className="h-4 w-4" />
+              </div>
+            </div>
           </div>
-          <div className="font-serif text-lg opacity-80">
-            Created by Thomas Addamo.
-          </div>
-          <div className="flex gap-4 mt-4">
-             <a href="https://www.iubenda.com/privacy-policy/14149172" target="_blank" rel="noopener noreferrer" className="font-sans text-[10px] uppercase tracking-widest opacity-60 hover:opacity-100" title="Privacy Policy">Privacy Policy</a>
-             <a href="https://www.iubenda.com/privacy-policy/14149172/cookie-policy" target="_blank" rel="noopener noreferrer" className="font-sans text-[10px] uppercase tracking-widest opacity-60 hover:opacity-100" title="Cookie Policy">Cookie Policy</a>
+
+          <div className="flex gap-4">
+             <a href="https://www.iubenda.com/privacy-policy/14149172" target="_blank" rel="noopener noreferrer" className="font-sans text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity" title="Privacy Policy">Privacy Policy</a>
+             <a href="https://www.iubenda.com/privacy-policy/14149172/cookie-policy" target="_blank" rel="noopener noreferrer" className="font-sans text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity" title="Cookie Policy">Cookie Policy</a>
           </div>
         </div>
 
