@@ -16,8 +16,10 @@ import { eventsData } from './data/eventsData';
 
 import Events from './components/Events';
 import EventReminder from './components/EventReminder';
+import NewsReminder from './components/NewsReminder';
 import CollettivoSection from './components/CollettivoSection';
 import CollettivoDetail from './components/CollettivoDetail';
+import { isNewNews } from './utils/dateHelpers';
 
 type AppView = 'home' | 'archive' | 'article' | 'privacy' | 'events' | 'collettivo';
 
@@ -122,6 +124,19 @@ const App: React.FC = () => {
     }
   }, []);
 
+  // News Reminder Logic
+  const [latestNewNews, setLatestNewNews] = useState<typeof newsData[0] | null>(null);
+  const [showNewsReminder, setShowNewsReminder] = useState(false);
+
+  useEffect(() => {
+    // Find the latest news item and check if it's "new"
+    const latestNews = newsData[0]; // Assuming newsData is sorted by date descending
+    if (latestNews && isNewNews(latestNews.date)) {
+      setLatestNewNews(latestNews);
+      setShowNewsReminder(true);
+    }
+  }, []);
+
   return (
     <main className="antialiased selection:bg-primary selection:text-paper relative">
       {/* 
@@ -135,6 +150,13 @@ const App: React.FC = () => {
             <EventReminder 
               event={upcomingEvent}
               onDismiss={() => setShowReminder(false)}
+            />
+          )}
+          {showNewsReminder && latestNewNews && view === 'home' && (
+            <NewsReminder 
+              news={latestNewNews}
+              onDismiss={() => setShowNewsReminder(false)}
+              onOpenNews={handleOpenNews}
             />
           )}
         </AnimatePresence>
