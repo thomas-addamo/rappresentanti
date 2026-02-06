@@ -163,6 +163,30 @@ const CollettivoDetail: React.FC<CollettivoDetailProps> = ({ onBack }) => {
             </motion.div>
           </div>
 
+          {/* Members Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="pt-12 border-t border-primary/5"
+          >
+            <h2 className="font-serif text-4xl md:text-5xl tracking-tight mb-12 text-center md:text-left">Il Team Attuale</h2>
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6">
+              {[
+                "Daniele Mazzetti",
+                "Matteo Meledandri",
+                "Lisa Rebufello",
+                "Enzo Arcidiacono",
+                "Asia Zarif"
+              ].map((name, i) => (
+                <div key={i} className="px-6 py-3 bg-primary/5 rounded-full border border-primary/5 hover:bg-primary hover:text-paper transition-all duration-500 group">
+                  <span className="font-sans text-sm md:text-base font-medium tracking-wide">{name}</span>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+
           {/* CTA Section */}
           <section className="pt-16 pb-8 md:pt-24 md:pb-12 border-t border-primary/5 text-center space-y-8 md:space-y-12">
              <h2 className="font-serif text-5xl md:text-8xl italic">Contattaci.</h2>
