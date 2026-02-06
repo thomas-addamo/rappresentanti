@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, MapPin, Clock } from 'lucide-react';
+import { ArrowLeft, MapPin, Clock } from 'lucide-react';
 import { eventsData } from '../data/eventsData';
+import Footer from './Footer';
 
 interface EventsProps {
   onBack: () => void;
@@ -192,10 +193,11 @@ const Events: React.FC<EventsProps> = ({ onBack }) => {
           })}
         </motion.div>
 
-        <div className="mt-32 text-center opacity-30 font-serif italic text-2xl">
+        <div className="mt-32 text-center opacity-30 font-serif italic text-2xl pb-24">
           More to come...
         </div>
       </div>
+      <Footer />
     </motion.div>
   );
 };

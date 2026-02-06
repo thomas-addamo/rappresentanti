@@ -4,9 +4,10 @@ import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   onOpenEvents?: () => void;
+  onOpenCollettivo?: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onOpenEvents }) => {
+const Navbar: React.FC<NavbarProps> = ({ onOpenEvents, onOpenCollettivo }) => {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -60,6 +61,11 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents }) => {
       return;
     }
 
+    if (id === 'collettivo') {
+      if (onOpenCollettivo) onOpenCollettivo();
+      return;
+    }
+
     const el = document.getElementById(id);
     if (el) {
       setTimeout(() => {
@@ -92,6 +98,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents }) => {
 
   const links = [
     { label: "Chi Siamo", id: "chi-siamo" },
+    { label: "Collettivo", id: "collettivo" },
     { label: "Obiettivi", id: "obiettivi" },
     { label: "Eventi", id: "events" },
     { label: "News", id: "news" },

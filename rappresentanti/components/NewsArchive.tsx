@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { newsData } from '../data/newsData';
 import { isNewNews } from '../utils/dateHelpers';
+import Footer from './Footer';
 
 interface NewsArchiveProps {
   onBack: () => void;
@@ -93,11 +94,11 @@ const NewsArchive: React.FC<NewsArchiveProps> = ({ onBack, onOpenNews }) => {
           <div className="border-t border-primary/20 w-full"></div>
         </motion.div>
 
-        {/* Footer for Archive */}
-        <div className="mt-24 text-center font-sans opacity-40 text-sm uppercase tracking-widest">
+        <div className="mt-24 text-center font-sans opacity-40 text-sm uppercase tracking-widest pb-24">
           Fine dell'archivio
         </div>
       </div>
+      <Footer />
     </motion.div>
   );
 };

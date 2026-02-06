@@ -20,15 +20,15 @@ const goals: Goal[] = [
   },
   {
     id: 3,
-    title: "Annuario scolastico",
-    description: "Realizzazione dell'annuario con foto, ricordi e contributi delle classi.",
-    status: "in-progress",
+    title: "Collettivo degli studenti",
+    description: "Gruppo dedicato al confronto, alle idee e alla rappresentanza studentesca. Garantisce la formazione per diventare futuri rappresentanti.",
+    status: "achieved",
     icon: ""
   },
   {
     id: 4,
-    title: "Collettivo degli studenti",
-    description: "Gruppo dedicato al confronto, alle idee e alla rappresentanza studentesca. Garantisce la formazione per diventare futuri rappresentanti.",
+    title: "Annuario scolastico",
+    description: "Realizzazione dell'annuario con foto, ricordi e contributi delle classi.",
     status: "in-progress",
     icon: ""
   },

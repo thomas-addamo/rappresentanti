@@ -2,6 +2,24 @@ import { NewsItem } from '../types';
 
 export const newsData: NewsItem[] = [
     {
+    id: 6,
+    date: "6 Feb 2026",
+    category: "Partecipazione",
+    title: "Nasce Ufficialmente il Collettivo Studentesco",
+    excerpt: "Siamo orgogliosi di annunciare la nascita del Collettivo Maxwell: il nuovo cuore pulsante della nostra partecipazione scolastica.",
+    author: "Rappresentanti",
+    featured: true,
+    content: `
+      <p>Cari studenti,</p>
+      <p>Oggi segniamo una tappa fondamentale per la nostra scuola: la nascita ufficiale del <b>Collettivo Studentesco</b>.</p>
+      <p>Non si tratta solo di un nuovo gruppo di lavoro, ma di uno spazio di democrazia e azione creato per dare una voce reale a chiunque voglia partecipare attivamente al miglioramento dell'Istituto.</p>
+      <p>Il Collettivo opererà a supporto dei Rappresentanti, raccogliendo idee, organizzando iniziative e lavorando su progetti concreti per tutti noi.</p>
+      <p>Vi invitiamo a scoprire tutti i dettagli visitando la nuova sezione dedicata qui sul sito!</p>
+      <p>Insieme, facciamo la differenza.</p>
+      <p>I vostri Rappresentanti.</p>
+    `
+  },
+    {
     id: 5,
     date: "24 Gen 2026",
     category: "Iscrizioni",

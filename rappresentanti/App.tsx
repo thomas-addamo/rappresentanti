@@ -16,29 +16,45 @@ import { eventsData } from './data/eventsData';
 
 import Events from './components/Events';
 import EventReminder from './components/EventReminder';
+import CollettivoSection from './components/CollettivoSection';
+import CollettivoDetail from './components/CollettivoDetail';
 
-type AppView = 'home' | 'archive' | 'article' | 'privacy' | 'events';
+type AppView = 'home' | 'archive' | 'article' | 'privacy' | 'events' | 'collettivo';
 
 const App: React.FC = () => {
   const [view, setView] = useState<AppView>('home');
   const [selectedNewsId, setSelectedNewsId] = useState<number | null>(null);
 
-  // Handle hash navigation for Privacy Policy
+  // Handle hash navigation
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === '#privacy-policy') {
+      const hash = window.location.hash;
+      if (hash === '#privacy-policy') {
         setView('privacy');
-      } else if (view === 'privacy') {
-        // Only go back to home if we were on privacy and hash changed to something else (or empty)
+      } else if (hash === '#collettivo') {
+        setView('collettivo');
+      } else if (hash === '#events') {
+        setView('events');
+      } else if (hash === '' || hash === '#home') {
         setView('home');
       }
     };
 
-    // Check on mount
-    handleHashChange();
-
     window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // Check on mount
+
     return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Sync state transitions to URL hash for better UX
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (view === 'privacy' && hash !== '#privacy-policy') window.location.hash = 'privacy-policy';
+    if (view === 'collettivo' && hash !== '#collettivo') window.location.hash = 'collettivo';
+    if (view === 'events' && hash !== '#events') window.location.hash = 'events';
+    if (view === 'home' && hash !== '' && hash !== '#home') {
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
   }, [view]);
 
   // Function to handle opening a specific news item
@@ -57,16 +73,15 @@ const App: React.FC = () => {
     setView('events');
   };
 
+  // Function to handle opening Collettivo
+  const handleOpenCollettivo = () => {
+    setView('collettivo');
+  };
+
   // Function to return to home
   const handleBackToHome = () => {
-    if (view === 'privacy') {
-      // Remove hash without triggering a reload, but trigger hashchange if needed or just update state
-      history.pushState("", document.title, window.location.pathname + window.location.search);
-      setView('home');
-    } else {
-      setView('home');
-      setSelectedNewsId(null);
-    }
+    setView('home');
+    setSelectedNewsId(null);
   };
 
   // Find the selected news object based on ID
@@ -123,12 +138,13 @@ const App: React.FC = () => {
             />
           )}
         </AnimatePresence>
-        <Navbar onOpenEvents={handleOpenEvents} />
+        <Navbar onOpenEvents={handleOpenEvents} onOpenCollettivo={handleOpenCollettivo} />
       </div>
 
       <div>
         <Hero />
         <Team />
+        <CollettivoSection onOpen={handleOpenCollettivo} />
         <Goals />
         <News onOpenNews={handleOpenNews} onOpenArchive={handleOpenArchive} />
         <Contact />
@@ -136,7 +152,7 @@ const App: React.FC = () => {
         <ScrollToTop />
       </div>
 
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {view === 'article' && selectedNews && (
           <NewsDetail
             key="detail"
@@ -163,6 +179,13 @@ const App: React.FC = () => {
         {view === 'events' && (
           <Events
             key="events"
+            onBack={handleBackToHome}
+          />
+        )}
+
+        {view === 'collettivo' && (
+          <CollettivoDetail
+            key="collettivo"
             onBack={handleBackToHome}
           />
         )}

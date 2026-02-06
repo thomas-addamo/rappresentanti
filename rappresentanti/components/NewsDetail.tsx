@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Tag, User } from 'lucide-react';
 import { NewsItem } from '../types';
 import { isNewNews } from '../utils/dateHelpers';
+import Footer from './Footer';
 
 interface NewsDetailProps {
     news: NewsItem;
@@ -100,6 +101,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ news, onBack }) => {
                         <div className="font-sans text-3xl opacity-20">***</div>
                     </div>
                 </article>
+                <Footer />
             </div>
         </motion.div>
     );

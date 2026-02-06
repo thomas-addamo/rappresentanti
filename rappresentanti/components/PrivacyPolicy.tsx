@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
+import Footer from './Footer';
 
 interface PrivacyPolicyProps {
     onBack: () => void;
@@ -181,6 +182,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
                         <div className="font-sans text-3xl opacity-20">***</div>
                     </div>
                 </article>
+                <Footer />
             </div>
         </motion.div>
     );
