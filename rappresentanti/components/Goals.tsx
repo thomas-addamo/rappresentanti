@@ -152,7 +152,7 @@ const Goals: React.FC = () => {
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center gap-3">
                         {goal.owner === 'collettivo' && (
-                          <span className="px-2 py-0.5 rounded text-[10px] bg-primary text-white font-bold uppercase tracking-tighter">
+                          <span className="hidden md:inline-block px-2 py-0.5 rounded text-[10px] bg-primary text-white font-bold uppercase tracking-tighter">
                             Collettivo
                           </span>
                         )}
@@ -163,7 +163,12 @@ const Goals: React.FC = () => {
                     </div>
 
                     {/* Status Indicator */}
-                    <div className="self-start md:self-auto order-first md:order-last mb-2 md:mb-0">
+                    <div className="self-start md:self-auto order-first md:order-last mb-2 md:mb-0 flex items-center gap-2">
+                      {goal.owner === 'collettivo' && (
+                        <span className="md:hidden px-2 py-0.5 rounded text-[10px] bg-primary text-white font-bold uppercase tracking-tighter">
+                          Collettivo
+                        </span>
+                      )}
                       {isAchieved && (
                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-800 text-[10px] md:text-xs font-bold uppercase tracking-widest border border-green-200 shadow-sm">
                           <CheckCircle2 size={14} className="stroke-[3]" /> Completato

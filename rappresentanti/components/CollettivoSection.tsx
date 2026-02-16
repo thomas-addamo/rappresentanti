@@ -38,17 +38,15 @@ const CollettivoSection: React.FC<CollettivoSectionProps> = ({ onOpen }) => {
             Scopri come stiamo cambiando il volto della nostra scuola.
           </p>
 
-          <div className="pt-6 md:pt-10">
+          <div className="pt-8 md:pt-12 flex justify-center">
             <motion.button
               onClick={onOpen}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative inline-flex items-center gap-6 bg-paper text-primary px-10 py-5 md:px-12 md:py-6 rounded-full font-sans font-bold uppercase tracking-widest text-xs md:text-sm transition-all shadow-2xl hover:bg-white"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group flex items-center gap-3 font-sans uppercase tracking-widest text-[10px] md:text-xs border border-paper/40 px-8 py-4 rounded-full hover:bg-paper hover:text-primary transition-all duration-300"
             >
               Scopri il Progetto
-              <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center border border-primary/20 rounded-full group-hover:bg-primary group-hover:text-paper transition-all">
-                <ArrowRight size={20} />
-              </div>
+              <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
             </motion.button>
           </div>
         </motion.div>
