@@ -9,70 +9,80 @@ const goals: Goal[] = [
     title: "Apertura sito web dei rappresentanti",
     description: "Spazio dedicato agli studenti per un costante aggiornamento da parte dei rappresentanti.",
     status: "achieved",
-    icon: ""
+    icon: "",
+    owner: "rappresentanti"
   },
   {
     id: 2,
     title: "Merch d'Istituto",
     description: "Creazione, gestione e vendita di prodotti personalizzati della scuola grazie ad aziende in collaborazione.",
     status: "achieved",
-    icon: ""
+    icon: "",
+    owner: "rappresentanti"
   },
   {
     id: 3,
     title: "Collettivo degli studenti",
     description: "Gruppo dedicato al confronto, alle idee e alla rappresentanza studentesca. Garantisce la formazione per diventare futuri rappresentanti.",
     status: "achieved",
-    icon: ""
+    icon: "",
+    owner: "rappresentanti"
   },
   {
     id: 4,
     title: "Annuario scolastico",
     description: "Realizzazione dell'annuario con foto, ricordi e contributi delle classi.",
     status: "in-progress",
-    icon: ""
+    icon: "",
+    owner: "rappresentanti"
   },
   {
     id: 5,
     title: "Feste d'Istituto",
     description: "Organizzazione di feste scolastiche e dei prom con altri istituti nel territorio.",
     status: "in-progress",
-    icon: ""
+    icon: "",
+    owner: "rappresentanti"
   },
   {
     id: 6,
     title: "Diritti e doveri dello studente",
     description: "Pubblicazione su Instagram di contenuti chiari e accessibili per informare tutta la comunità scolastica.",
     status: "in-progress",
-    icon: ""
+    icon: "",
+    owner: "collettivo"
   },
   {
     id: 7,
     title: "Co-gestione",
     description: "Spazi di collaborazione tra studenti e scuola per la gestione di attività e progetti.",
     status: "in-progress",
-    icon: ""
+    icon: "",
+    owner: "collettivo"
   },
   {
     id: 8,
     title: "Collaborazione Istituzionale",
     description: "Progetti e iniziative in coordinamento con il Comune di Nichelino.",
     status: "locked",
-    icon: ""
+    icon: "",
+    owner: "rappresentanti"
   },
   {
     id: 9,
     title: "Tornei studenteschi",
     description: "Attività sportive extrascolastiche aperte alle classi e contro istituti del territorio.",
     status: "locked",
-    icon: ""
+    icon: "",
+    owner: "rappresentanti"
   },
   {
     id: 10,
     title: "Radio d'Istituto",
     description: "Riapertura e gestione della radio scolastica con programmi curati dagli studenti dove si garantisce supervisione e trasparenza.",
     status: "locked",
-    icon: ""
+    icon: "",
+    owner: "rappresentanti"
   }
 ];
 
@@ -139,10 +149,17 @@ const Goals: React.FC = () => {
                 >
                   {/* Status Badge - Mobile Optimized */}
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
-                    <div className="flex items-center gap-4">
-                      <h3 className={`font-serif text-2xl md:text-3xl leading-tight ${isLocked ? 'text-gray-400' : 'text-primary'}`}>
-                        {goal.title}
-                      </h3>
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-3">
+                        {goal.owner === 'collettivo' && (
+                          <span className="px-2 py-0.5 rounded text-[10px] bg-primary text-white font-bold uppercase tracking-tighter">
+                            Collettivo
+                          </span>
+                        )}
+                        <h3 className={`font-serif text-2xl md:text-3xl leading-tight ${isLocked ? 'text-gray-400' : 'text-primary'}`}>
+                          {goal.title}
+                        </h3>
+                      </div>
                     </div>
 
                     {/* Status Indicator */}

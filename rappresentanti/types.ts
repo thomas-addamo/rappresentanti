@@ -13,6 +13,7 @@ export interface Goal {
   description: string;
   status: 'achieved' | 'in-progress' | 'locked';
   icon: string;
+  owner?: 'collettivo' | 'rappresentanti';
 }
 
 export interface NewsItem {
