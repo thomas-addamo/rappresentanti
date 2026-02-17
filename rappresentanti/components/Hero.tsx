@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            La Vostra
+            We work
           </motion.span>
           <motion.span
             initial={{ y: 100, opacity: 0 }}
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
             transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="italic text-primary/90"
           >
-            Voce.
+            for You.
           </motion.span>
         </h1>
       </motion.div>
