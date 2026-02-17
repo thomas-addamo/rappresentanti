@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Footer: React.FC = () => {
+const CollettivoFooter: React.FC = () => {
   return (
     <footer className="bg-primary text-paper py-12 px-6 md:px-12 border-t border-paper/10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -8,15 +8,16 @@ const Footer: React.FC = () => {
         {/* Brand */}
         <div className="flex flex-col items-center md:items-start gap-4">
           <div className="flex items-center gap-3">
-            <img src="https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/logo_rappresentantisvg.svg" alt="Rappresentanti Logo" className="h-12 w-auto" />
-            <span className="font-serif italic text-2xl">Rappresentanti.</span>
+             {/* Usiamo lo stesso logo o uno specifico se presente, per ora mantengo coerenza strutturale */}
+             <img src="https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/logo_rappresentantisvg.svg" alt="Rappresentanti Logo" className="h-12 w-auto" />
+            <span className="font-serif italic text-2xl">Collettivo.</span>
           </div>
           <p className="font-sans text-xs opacity-60 max-w-[200px] text-center md:text-left hidden md:block">
             La voce degli studenti dell'Istituto Maxwell.
           </p>
           <div className="flex gap-4 mt-2 font-sans text-xs uppercase tracking-widest opacity-80">
             <a href="/" className="hover:text-white transition-colors border-b border-paper/20 pb-0.5">Sito Principale</a>
-            <a href="/collettivo" className="hover:text-white transition-colors border-b border-paper/20 pb-0.5">Collettivo</a>
+            <a href="/collettivo" className="hover:text-white transition-colors border-b border-paper/20 pb-0.5 relative after:content-[''] after:absolute after:top-full after:left-0 after:w-full after:h-px after:bg-white after:opacity-100">Collettivo</a>
           </div>
         </div>
 
@@ -56,18 +57,18 @@ const Footer: React.FC = () => {
             @rappresentanti.maxwell
           </a>
           <span className="font-sans text-[10px] uppercase tracking-[0.2em] opacity-40 mt-4">Scrivici una mail</span>
-          <a href="mailto:info@rappresentantimaxwell.it" className="font-sans text-sm tracking-widest hover:opacity-70 transition-opacity border-b border-paper/20 pb-1">
-            info@rappresentantimaxwell.it
+          <a href="mailto:collettivo@rappresentantimaxwell.it" className="font-sans text-sm tracking-widest hover:opacity-70 transition-opacity border-b border-paper/20 pb-1">
+            collettivo@rappresentantimaxwell.it
           </a>
         </div>
 
         {/* Disclaimer */}
         <div className="col-span-1 md:col-span-3 mt-8 pt-8 border-t border-paper/10 w-full text-center">
           <p className="font-sans text-[12px] opacity-40 tracking-wider">
-            Il presente sito è gestito autonomamente dai Rappresentanti d’Istituto e non costituisce un canale ufficiale dell’Istituto Maxwell di Nichelino.
+            Il presente sito è gestito autonomamente dai rappresentanti d’istituto e non costituisce un canale ufficiale dell’Istituto Maxwell di Nichelino.
             L’istituto scolastico non è in alcun modo responsabile dei contenuti pubblicati né delle informazioni fornite su questa piattaforma.
             Il nome dell’istituto è utilizzato esclusivamente per indicare l’ambito di rappresentanza studentesca. 
-            Al termine del mandato, le responsabilità connesse alla gestione del sito decadono automaticamente per i Rappresentanti uscenti.
+            Al termine del mandato, le responsabilità connesse alla gestione del sito decadono automaticamente per i rappresentanti uscenti.
           </p>
         </div>
 
@@ -76,4 +77,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer;
+export default CollettivoFooter;

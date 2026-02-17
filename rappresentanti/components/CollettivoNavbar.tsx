@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, Variants } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-interface NavbarProps {
-  onOpenEvents?: () => void;
-  onOpenCollettivo?: () => void;
-  isExternalPage?: boolean;
+interface CollettivoNavbarProps {
   onNavigate?: (id: string) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onOpenEvents, onOpenCollettivo, isExternalPage, onNavigate }) => {
+const CollettivoNavbar: React.FC<CollettivoNavbarProps> = ({ onNavigate }) => {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -57,22 +54,6 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents, onOpenCollettivo, isExter
 
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
-
-    if (id === 'events') {
-      if (onOpenEvents) onOpenEvents();
-      return;
-    }
-
-    if (id === 'collettivo') {
-      if (onOpenCollettivo) onOpenCollettivo();
-      return;
-    }
-
-    if (isExternalPage && onNavigate) {
-        onNavigate(id);
-        return;
-    }
-
     const el = document.getElementById(id);
     if (el) {
       setTimeout(() => {
@@ -104,17 +85,12 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents, onOpenCollettivo, isExter
   };
 
   const links = [
-    { label: "Chi Siamo", id: "chi-siamo" },
-    { label: "Collettivo", id: "collettivo" },
-    { label: "Obiettivi", id: "obiettivi" },
-    { label: "Eventi", id: "events" },
-    { label: "News", id: "news" },
-    { label: "Contattaci", id: "contatti" }
+    { label: "Chi Siamo", id: "chi-siamo-collettivo" },
+    { label: "Obiettivi", id: "obiettivi-collettivo" },
+    { label: "Contattaci", id: "unisciti-collettivo" }
   ];
 
   // Logic for dynamic classes
-  const isTransparent = !scrolled;
-
   // Background:
   // - Top: Transparent
   // - Scrolled: Opaque 'paper-dark' (Grayish) with blur
@@ -142,7 +118,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents, onOpenCollettivo, isExter
         initial="hidden"
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="w-full z-50 transition-all duration-500"
+        className={`w-full relative z-50 transition-all duration-500 ${isMobileMenuOpen ? '!z-[110]' : ''}`}
       >
         {/* Background Layer */}
         <div
@@ -153,9 +129,9 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents, onOpenCollettivo, isExter
         <div className={`relative z-10 px-6 py-4 flex justify-between items-center w-full transition-all duration-500 ${textClass}`}>
           <button
             onClick={scrollToTop}
-            className="font-serif text-2xl font-italic tracking-tighter hover:opacity-80 transition-opacity"
+            className={`font-serif text-2xl font-italic tracking-tighter hover:opacity-80 transition-opacity ${isMobileMenuOpen ? 'text-paper' : ''}`}
           >
-            Rappresentanti.
+            Collettivo.
           </button>
 
           {/* Desktop Menu */}
@@ -175,7 +151,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents, onOpenCollettivo, isExter
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 hover:opacity-70 transition-opacity"
+            className={`md:hidden p-2 hover:opacity-70 transition-opacity ${isMobileMenuOpen ? 'text-paper' : ''}`}
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -190,7 +166,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents, onOpenCollettivo, isExter
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed inset-0 bg-primary z-40 flex flex-col justify-center items-center text-paper"
+            className="fixed inset-0 bg-primary z-[100] flex flex-col justify-center items-center text-paper"
           >
             {/* Decorative Background */}
             <div className="absolute inset-0 pointer-events-none opacity-5 overflow-hidden">
@@ -219,7 +195,7 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents, onOpenCollettivo, isExter
               transition={{ delay: 0.6 }}
               className="absolute bottom-12 font-sans text-xs uppercase tracking-[0.2em]"
             >
-              Rappresentanti d'Istituto
+              Collettivo Maxwell
             </motion.div>
           </motion.div>
         )}
@@ -228,4 +204,4 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenEvents, onOpenCollettivo, isExter
   );
 };
 
-export default Navbar;
+export default CollettivoNavbar;

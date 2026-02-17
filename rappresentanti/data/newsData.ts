@@ -2,6 +2,22 @@ import { NewsItem } from '../types';
 
 export const newsData: NewsItem[] = [
     {
+    id: 7,
+    date: "17 Feb 2026",
+    category: "Sito Web",
+    title: "Nuova Pagina Collettivo: Scopri le Novità",
+    excerpt: "Abbiamo aggiornato la sezione dedicata al Collettivo Studentesco con un nuovo design e contenuti arricchiti.",
+    author: "Rappresentanti",
+    featured: true,
+    content: `
+      <p>Cari studenti,</p>
+      <p>Siamo felici di comunicarvi che la pagina dedicata al <b>Collettivo Studentesco</b> è stata completamente rinnovata.</p>
+      <p>Ora potete esplorare nel dettaglio i nostri <b>Valori</b>, conoscere il <b>Team</b> e seguire passo passo l'avanzamento dei nostri <b>Obiettivi Concreti</b>.</p>
+      <p>Vi invitiamo a visitare la nuova sezione per scoprire come stiamo lavorando per migliorare la nostra scuola.</p>
+      <p>Il vostro supporto è la nostra forza.</p>
+    `
+  },
+    {
     id: 6,
     date: "6 Feb 2026",
     category: "Partecipazione",
