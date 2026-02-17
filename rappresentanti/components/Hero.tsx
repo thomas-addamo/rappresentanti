@@ -43,7 +43,7 @@ const Hero: React.FC = () => {
           </motion.p>
         </div>
 
-        <h1 className="font-serif text-[15vw] leading-[0.85] md:text-[11vw] text-primary flex flex-col items-center">
+        <h1 className="font-serif text-[18vw] leading-[0.85] md:text-[11vw] text-primary flex flex-col items-center">
           <motion.span
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
