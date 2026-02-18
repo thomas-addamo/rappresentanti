@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from "@vercel/analytics/react";
 import Home from './pages/Home';
 import CollettivoPage from './pages/CollettivoPage';
 import ScrollToTop from './components/ScrollToTop';
@@ -14,6 +15,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/collettivo" element={<CollettivoPage />} />
       </Routes>
+      <Analytics />
     </BrowserRouter>
   );
 };
