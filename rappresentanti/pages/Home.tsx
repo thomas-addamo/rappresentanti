@@ -185,7 +185,6 @@ const Home: React.FC = () => {
         <News onOpenNews={handleOpenNews} onOpenArchive={handleOpenArchive} />
         <Contact />
         <Footer />
-        <ScrollToTop />
       </div>
 
       <AnimatePresence>
