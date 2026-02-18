@@ -67,33 +67,10 @@
         scrollbar-width: none;
       }
     </style>
-    <script
-      type="text/javascript"
-      src="https://embeds.iubenda.com/widgets/38b5cce0-be4d-4acd-8abf-1c128ff43c03.js"
-    ></script>
   </head>
 
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
-
-    <!-- Iubenda Embed Loader -->
-    <script type="text/javascript">
-      (function (w, d) {
-        var loader = function () {
-          var s = d.createElement("script"),
-            tag = d.getElementsByTagName("script")[0];
-          s.src = "https://cdn.iubenda.com/iubenda.js";
-          tag.parentNode.insertBefore(s, tag);
-        };
-        if (w.addEventListener) {
-          w.addEventListener("load", loader, false);
-        } else if (w.attachEvent) {
-          w.attachEvent("onload", loader);
-        } else {
-          w.onload = loader;
-        }
-      })(window, document);
-    </script>
   </body>
 </html>

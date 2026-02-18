@@ -11,6 +11,7 @@ import Footer from '../components/Footer';
 import NewsDetail from '../components/NewsDetail';
 import NewsArchive from '../components/NewsArchive';
 import PrivacyPolicy from '../components/PrivacyPolicy';
+import CookiePolicy from '../components/CookiePolicy';
 import ScrollToTop from '../components/ScrollToTop';
 import { newsData } from '../data/newsData';
 import { eventsData } from '../data/eventsData';
@@ -22,43 +23,42 @@ import CollettivoSection from '../components/CollettivoSection';
 // CollettivoDetail rimosso da qui perché ora è una pagina separata
 import { isNewNews } from '../utils/dateHelpers';
 
-type HomeView = 'home' | 'archive' | 'article' | 'privacy' | 'events';
+type HomeView = 'home' | 'archive' | 'article' | 'privacy' | 'cookie-policy' | 'events';
 
 const Home: React.FC = () => {
-  const [view, setView] = useState<HomeView>('home');
+  // Initialize view from hash to prevent flickering on first load
+  const [view, setView] = useState<HomeView>(() => {
+    const hash = window.location.hash;
+    if (hash === '#privacy-policy') return 'privacy';
+    if (hash === '#cookie-policy') return 'cookie-policy';
+    if (hash === '#events') return 'events';
+    return 'home';
+  });
   const [selectedNewsId, setSelectedNewsId] = useState<number | null>(null);
   
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Handle hash navigation
+  // Sync view status with URL hash
   useEffect(() => {
     const hash = location.hash;
+    
     if (hash === '#privacy-policy') {
-      setView('privacy');
+      if (view !== 'privacy') setView('privacy');
+    } else if (hash === '#cookie-policy') {
+      if (view !== 'cookie-policy') setView('cookie-policy');
     } else if (hash === '#events') {
-      setView('events');
-    } else if (hash === '' || hash === '#home') {
-      setView('home');
+      if (view !== 'events') setView('events');
     } else if (hash === '#collettivo') {
-        // Se arriviamo con hash collettivo ma siamo in home, scrolliamo alla sezione
-        setView('home');
-        setTimeout(() => {
-            const el = document.getElementById('collettivo');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+      if (view !== 'home') setView('home');
+      setTimeout(() => {
+          const el = document.getElementById('collettivo');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else if (hash === '' || hash === '#home') {
+      if (view !== 'home' && view !== 'article' && view !== 'archive') setView('home');
     }
-  }, [location]);
-
-  // Sync state transitions to URL hash for better UX
-  useEffect(() => {
-    if (view === 'privacy' && location.hash !== '#privacy-policy') navigate('#privacy-policy');
-    if (view === 'events' && location.hash !== '#events') navigate('#events');
-    if (view === 'home' && location.hash !== '' && location.hash !== '#home' && location.hash !== '#collettivo') {
-      // Clean hash
-      navigate(location.pathname, { replace: true });
-    }
-  }, [view, navigate, location.hash, location.pathname]);
+  }, [location.hash, view]);
 
   // Function to handle opening a specific news item
   const handleOpenNews = (id: number) => {
@@ -89,9 +89,13 @@ const Home: React.FC = () => {
 
   // Function to return to home view
   const handleBackToHomeView = () => {
-    setView('home');
-    setSelectedNewsId(null);
-    navigate('/', { replace: true });
+    if (view === 'article' || view === 'archive') {
+      setView('home');
+      setSelectedNewsId(null);
+    } else {
+      // For hash-based views (privacy, cookie, events), just remove the hash
+      navigate(location.pathname, { replace: true });
+    }
   };
 
   // Find the selected news object based on ID
@@ -146,7 +150,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className="antialiased selection:bg-primary selection:text-paper relative">
+    <div className="min-h-screen relative antialiased selection:bg-primary selection:text-paper">
       <div className="fixed top-0 left-0 w-full z-50 flex flex-col">
         <AnimatePresence>
           {showReminder && upcomingEvent && view === 'home' && (
@@ -184,7 +188,7 @@ const Home: React.FC = () => {
         <ScrollToTop />
       </div>
 
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {view === 'article' && selectedNews && (
           <NewsDetail
             key="detail"
@@ -204,6 +208,13 @@ const Home: React.FC = () => {
         {view === 'privacy' && (
           <PrivacyPolicy
             key="privacy"
+            onBack={handleBackToHomeView}
+          />
+        )}
+
+        {view === 'cookie-policy' && (
+          <CookiePolicy
+            key="cookie-policy"
             onBack={handleBackToHomeView}
           />
         )}

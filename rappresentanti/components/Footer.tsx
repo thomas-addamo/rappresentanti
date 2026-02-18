@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Footer: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <footer className="bg-primary text-paper py-12 px-6 md:px-12 border-t border-paper/10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
@@ -43,9 +45,10 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex gap-4">
-             <a href="https://www.iubenda.com/privacy-policy/14149172" target="_blank" rel="noopener noreferrer" className="font-sans text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity" title="Privacy Policy">Privacy Policy</a>
-             <a href="https://www.iubenda.com/privacy-policy/14149172/cookie-policy" target="_blank" rel="noopener noreferrer" className="font-sans text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity" title="Cookie Policy">Cookie Policy</a>
+          <div className="flex flex-wrap justify-center gap-4">
+             <button onClick={() => navigate('/#privacy-policy')} className="font-sans text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity cursor-pointer" title="Privacy Policy">Privacy Policy</button>
+             <button onClick={() => navigate('/#cookie-policy')} className="font-sans text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity cursor-pointer" title="Cookie Policy">Cookie Policy</button>
+             <button onClick={() => window.dispatchEvent(new CustomEvent('open-cookie-settings'))} className="font-sans text-[10px] uppercase tracking-widest opacity-40 hover:opacity-100 transition-opacity cursor-pointer" title="Gestisci preferenze cookie">Preferenze Cookie</button>
           </div>
         </div>
 
