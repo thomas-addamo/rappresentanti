@@ -29,6 +29,14 @@ const goals: Goal[] = [
     owner: "rappresentanti"
   },
   {
+    id: 6,
+    title: "Diritti e doveri dello studente",
+    description: "Pubblicazione su Instagram di contenuti chiari e accessibili per informare tutta la comunità scolastica.",
+    status: "achieved",
+    icon: "",
+    owner: "collettivo"
+  },
+  {
     id: 4,
     title: "Annuario scolastico",
     description: "Realizzazione dell'annuario con foto, ricordi e contributi delle classi.",
@@ -43,14 +51,6 @@ const goals: Goal[] = [
     status: "in-progress",
     icon: "",
     owner: "rappresentanti"
-  },
-  {
-    id: 6,
-    title: "Diritti e doveri dello studente",
-    description: "Pubblicazione su Instagram di contenuti chiari e accessibili per informare tutta la comunità scolastica.",
-    status: "in-progress",
-    icon: "",
-    owner: "collettivo"
   },
   {
     id: 7,

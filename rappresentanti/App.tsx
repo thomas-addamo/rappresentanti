@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Analytics } from "@vercel/analytics/react";
 import Home from './pages/Home';
 import CollettivoPage from './pages/CollettivoPage';
+import CollettivoDirittiDoveriPage from './pages/CollettivoDirittiDoveriPage';
 import ScrollToTop from './components/ScrollToTop';
 import ScrollHandler from './components/ScrollHandler';
 import CookieBanner, { hasAnalyticsConsent } from './components/CookieBanner';
@@ -31,6 +32,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/collettivo" element={<CollettivoPage />} />
+        <Route path="/collettivo/diritti-e-doveri" element={<CollettivoDirittiDoveriPage />} />
       </Routes>
       <ConditionalAnalytics />
       <CookieBanner />

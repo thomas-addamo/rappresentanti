@@ -2,6 +2,24 @@ import { NewsItem } from '../types';
 
 export const newsData: NewsItem[] = [
     {
+    id: 8,
+    date: "25 Feb 2026",
+    category: "Collettivo",
+    title: "Diritti e Doveri dello Studente: la Guida è Online",
+    excerpt: "Il Collettivo ha pubblicato la guida completa ai diritti e doveri dello studente. Scopri cosa puoi pretendere e cosa devi rispettare.",
+    author: "Collettivo",
+    featured: true,
+    content: `
+      <p>Cari studenti,</p>
+      <p>Siamo orgogliosi di annunciare che il <b>Collettivo Studentesco</b> ha completato uno dei suoi primi obiettivi: la pubblicazione della guida completa ai <b>Diritti e Doveri dello Studente</b>.</p>
+      <p>All'interno troverete una panoramica chiara e schematica di tutto ciò che il regolamento d'istituto prevede: dai vostri <b>diritti fondamentali</b> (libertà di opinione, diritto alla difesa, tutela della privacy) ai <b>doveri</b> che ogni studente è tenuto a rispettare.</p>
+      <p>Abbiamo incluso anche una sezione dedicata alle <b>sanzioni</b> e al nuovo <b>regolamento smartphone 2025</b>, con l'escalation completa delle conseguenze previste.</p>
+      <p>Potete consultare la guida direttamente sul sito nella sezione <a href="/collettivo/diritti-e-doveri" class="underline hover:text-primary">Collettivo → Diritti e Doveri</a>, oppure scaricare il documento integrale in formato PDF.</p>
+      <p>Conoscere i propri diritti è il primo passo per farli rispettare.</p>
+      <p>Il Collettivo Studentesco.</p>
+    `
+  },
+    {
     id: 7,
     date: "17 Feb 2026",
     category: "Sito Web",

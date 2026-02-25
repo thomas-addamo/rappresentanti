@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, Variants } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface CollettivoNavbarProps {
   onNavigate?: (id: string) => void;
@@ -127,12 +128,13 @@ const CollettivoNavbar: React.FC<CollettivoNavbarProps> = ({ onNavigate }) => {
 
         {/* Content Layer */}
         <div className={`relative z-10 px-6 py-4 flex justify-between items-center w-full transition-all duration-500 ${textClass}`}>
-          <button
-            onClick={scrollToTop}
+          <Link
+            to="/collettivo"
+            onClick={() => setIsMobileMenuOpen(false)}
             className={`font-serif text-2xl font-italic tracking-tighter hover:opacity-80 transition-opacity ${isMobileMenuOpen ? 'text-paper' : ''}`}
           >
             Collettivo.
-          </button>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex gap-8 font-sans text-sm uppercase tracking-widest">
