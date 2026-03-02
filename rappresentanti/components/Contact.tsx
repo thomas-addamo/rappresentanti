@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import { Send, Check } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
+// Credenziali EmailJS — configurate direttamente qui
+const EMAILJS_PUBLIC_KEY = 'WIvAw4Jog91NeAxtW';
+const EMAILJS_SERVICE_ID = 'service_xjnakew';
+const EMAILJS_TEMPLATE_ID = 'template_50we7nl';
+const EMAIL_TO = 'info@rappresentantimaxwell.it';
+
 const Contact: React.FC = () => {
-  const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [formState, setFormState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [showPrivacyError, setShowPrivacyError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,6 +23,7 @@ const Contact: React.FC = () => {
     }
 
     setFormState('sending');
+    setErrorMessage('');
 
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -23,48 +31,23 @@ const Contact: React.FC = () => {
     const fromEmail = String(data.get('email') || '').trim();
     const message = String(data.get('message') || '').trim();
 
-    const EMAIL_TO = 'info@rappresentantimaxwell.it';
-
-    const pubKey = process.env.EMAILJS_PUBLIC_KEY as string | undefined;
-    const serviceId = process.env.EMAILJS_SERVICE_ID as string | undefined;
-    const templateId = process.env.EMAILJS_TEMPLATE_ID as string | undefined;
-
-    // Se configurato EmailJS, invia direttamente; altrimenti fallback a mailto
-    if (pubKey && serviceId && templateId) {
-      try {
-        emailjs.init(pubKey);
-        await emailjs.send(serviceId, templateId, {
-          from_name: name,
-          from_email: fromEmail,
-          message,
-          to_email: EMAIL_TO,
-        });
-        setFormState('sent');
-        form.reset();
-        setTimeout(() => setFormState('idle'), 3000);
-      } catch (err) {
-        console.error('Errore invio EmailJS:', err);
-        setFormState('idle');
-        alert("C'è stato un errore nell'invio. Riprova più tardi.");
-      }
-      return;
-    }
-
-    // Fallback: apre il client email dell'utente
-    const subject = `Nuovo messaggio dal sito — ${name || 'Utente'}`;
-    const body = `Da: ${name} <${fromEmail}>
-
-${message}`;
-    const mailto = `mailto:${EMAIL_TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     try {
-      window.location.href = mailto;
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name: name,
+        from_email: fromEmail,
+        message,
+        to_email: EMAIL_TO,
+      });
       setFormState('sent');
       form.reset();
-      setTimeout(() => setFormState('idle'), 3000);
+      setPrivacyAccepted(false);
+      setTimeout(() => setFormState('idle'), 4000);
     } catch (err) {
-      console.error('Errore apertura mailto:', err);
-      setFormState('idle');
-      alert("Impossibile aprire il client email. Puoi scriverci a: " + EMAIL_TO);
+      console.error('Errore invio EmailJS:', err);
+      setErrorMessage("C'è stato un errore nell'invio. Riprova più tardi o scrivici direttamente a " + EMAIL_TO);
+      setFormState('error');
+      setTimeout(() => setFormState('idle'), 6000);
     }
   };
 
@@ -158,16 +141,24 @@ ${message}`;
             )}
           </div>
 
+          {/* Messaggio di errore */}
+          {formState === 'error' && (
+            <p className="text-red-400 text-sm font-sans text-center leading-relaxed">
+              {errorMessage}
+            </p>
+          )}
+
           <div className="flex justify-center">
             <button
               type="submit"
-              disabled={formState !== 'idle'}
+              disabled={formState === 'sending' || formState === 'sent'}
               className="group relative inline-flex items-center justify-center px-12 py-4 text-lg font-sans uppercase tracking-widest overflow-hidden transition-all bg-paper text-primary hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-paper disabled:opacity-70 disabled:cursor-not-allowed"
             >
               <span className="relative flex items-center gap-2">
                 {formState === 'idle' && <>INVIA <Send size={18} /></>}
-                {formState === 'sending' && "INVIO..."}
+                {formState === 'sending' && 'INVIO...'}
                 {formState === 'sent' && <>INVIATO <Check size={18} /></>}
+                {formState === 'error' && <>INVIA <Send size={18} /></>}
               </span>
             </button>
           </div>
