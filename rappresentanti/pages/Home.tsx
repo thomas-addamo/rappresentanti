@@ -20,7 +20,6 @@ import Events from '../components/Events';
 import EventReminder from '../components/EventReminder';
 import NewsReminder from '../components/NewsReminder';
 import CollettivoSection from '../components/CollettivoSection';
-import MerchModal from '../components/MerchModal';
 import MerchSection from '../components/MerchSection';
 // CollettivoDetail rimosso da qui perché ora è una pagina separata
 import { isNewNews } from '../utils/dateHelpers';
@@ -153,8 +152,6 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen relative antialiased selection:bg-primary selection:text-paper">
-      {view === 'home' && <MerchModal />}
-
       <div className="fixed top-0 left-0 w-full z-50 flex flex-col">
         <AnimatePresence>
           {showReminder && upcomingEvent && view === 'home' && (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { X, Newspaper, ArrowRight } from 'lucide-react';
 import { NewsItem } from '../types';
@@ -61,8 +61,7 @@ const NewsReminder: React.FC<NewsReminderProps> = ({ news, onDismiss, onOpenNews
           </button>
         </div>
       </div>
-      
-      {/* Background Decor */}
+
       <div className="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none select-none">
         <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)', backgroundSize: '24px 24px' }} />

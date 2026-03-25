@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { EventItem } from '../data/eventsData';
 import { Clock, X, CalendarDays } from 'lucide-react';
 
@@ -42,9 +42,9 @@ const EventReminder: React.FC<EventReminderProps> = ({ event, onDismiss }) => {
       animate={{ height: "auto", opacity: 1 }}
       exit={{ height: 0, opacity: 0 }}
       transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-      className="bg-gradient-to-r from-primary via-[#6f0009] to-primary text-paper relative overflow-hidden z-[60]"
+      className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-primary/10 bg-primary text-paper shadow-[0_10px_30px_rgba(79,0,6,0.12)]"
     >
-      <div className="max-w-7xl mx-auto px-4 py-2 md:py-3 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4 relative z-10">
+      <div className="px-4 py-2.5 md:px-5 md:py-3 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4 relative z-10">
         
         {/* Left: Event Info */}
         <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
@@ -75,7 +75,7 @@ const EventReminder: React.FC<EventReminderProps> = ({ event, onDismiss }) => {
         {/* Center/Right: Countdown */}
         <div className="flex items-center gap-1 md:gap-2">
           {/* Days */}
-          <div className="flex flex-col items-center bg-black/20 backdrop-blur-md rounded-lg py-1.5 px-2 md:py-2 md:px-3 border border-white/10 shadow-inner min-w-[50px] md:min-w-[70px]">
+          <div className="flex flex-col items-center bg-white/10 rounded-lg py-1.5 px-2 md:py-2 md:px-3 border border-white/10 min-w-[50px] md:min-w-[70px]">
             <span className="font-mono text-xl md:text-2xl font-bold leading-none tabular-nums tracking-tight text-white mb-0.5 shadow-sm">
               {timeLeft.days}
             </span>
@@ -85,7 +85,7 @@ const EventReminder: React.FC<EventReminderProps> = ({ event, onDismiss }) => {
           <div className="text-white/20 text-lg font-light pb-4 hidden md:block">:</div>
           
           {/* Hours */}
-          <div className="flex flex-col items-center bg-black/20 backdrop-blur-md rounded-lg py-1.5 px-2 md:py-2 md:px-3 border border-white/10 shadow-inner min-w-[50px] md:min-w-[70px]">
+          <div className="flex flex-col items-center bg-white/10 rounded-lg py-1.5 px-2 md:py-2 md:px-3 border border-white/10 min-w-[50px] md:min-w-[70px]">
              <span className="font-mono text-xl md:text-2xl font-bold leading-none tabular-nums tracking-tight text-white mb-0.5 shadow-sm">
               {timeLeft.hours.toString().padStart(2, '0')}
             </span>
@@ -95,7 +95,7 @@ const EventReminder: React.FC<EventReminderProps> = ({ event, onDismiss }) => {
           <div className="text-white/20 text-lg font-light pb-4 hidden md:block">:</div>
 
           {/* Minutes */}
-          <div className="flex flex-col items-center bg-black/20 backdrop-blur-md rounded-lg py-1.5 px-2 md:py-2 md:px-3 border border-white/10 shadow-inner min-w-[50px] md:min-w-[70px]">
+          <div className="flex flex-col items-center bg-white/10 rounded-lg py-1.5 px-2 md:py-2 md:px-3 border border-white/10 min-w-[50px] md:min-w-[70px]">
              <span className="font-mono text-xl md:text-2xl font-bold leading-none tabular-nums tracking-tight text-white mb-0.5 shadow-sm">
               {timeLeft.minutes.toString().padStart(2, '0')}
             </span>
@@ -105,7 +105,7 @@ const EventReminder: React.FC<EventReminderProps> = ({ event, onDismiss }) => {
           <div className="text-white/20 text-lg font-light pb-4 hidden md:block">:</div>
 
           {/* Seconds */}
-          <div className="flex flex-col items-center bg-white/10 backdrop-blur-md rounded-lg py-1.5 px-2 md:py-2 md:px-3 border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.1)] min-w-[50px] md:min-w-[70px]">
+          <div className="flex flex-col items-center bg-white/15 rounded-lg py-1.5 px-2 md:py-2 md:px-3 border border-white/20 min-w-[50px] md:min-w-[70px]">
              <span className="font-mono text-xl md:text-2xl font-bold leading-none tabular-nums tracking-tight text-white mb-0.5 shadow-sm">
               {timeLeft.seconds.toString().padStart(2, '0')}
             </span>
@@ -121,9 +121,6 @@ const EventReminder: React.FC<EventReminderProps> = ({ event, onDismiss }) => {
           <X size={18} />
         </button>
       </div>
-      
-      {/* Decorative Shine Effect */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
     </motion.div>
   );
 };
