@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, ShoppingBag } from 'lucide-react';
+import { ArrowRight, ShoppingBag, Sparkles, X } from 'lucide-react';
+
+const STORE_URL = 'https://store.ecosum.it/ecommerce-catalogo/iis-maxwell-to';
+const DISPLAY_SECONDS = 6;
 
 const MerchModal: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [timeLeft, setTimeLeft] = useState(7);
+  const [timeLeft, setTimeLeft] = useState(DISPLAY_SECONDS);
 
   useEffect(() => {
-    // Auto close after 7 seconds
-    const timer = setTimeout(() => {
+    const startedAt = Date.now();
+    const timer = window.setTimeout(() => {
       setIsVisible(false);
-    }, 7000);
+    }, DISPLAY_SECONDS * 1000);
 
-    // Update countdown smoothly
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => Math.max(0, prev - 0.05));
-    }, 50);
+    const interval = window.setInterval(() => {
+      const elapsed = (Date.now() - startedAt) / 1000;
+      setTimeLeft(Math.max(0, DISPLAY_SECONDS - elapsed));
+    }, 100);
 
     return () => {
-      clearTimeout(timer);
-      clearInterval(interval);
+      window.clearTimeout(timer);
+      window.clearInterval(interval);
     };
   }, []);
 
@@ -29,120 +32,134 @@ const MerchModal: React.FC = () => {
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-        exit={{ 
-          opacity: 0, 
-          scale: 1.1, 
-          filter: "blur(20px)",
-          transition: { duration: 0.8, ease: "easeInOut" }
-        }}
-        transition={{ duration: 0.5 }}
-        className="fixed inset-0 z-[100] flex flex-col md:flex-row bg-[#4f0006] text-[#f5f2eb] overflow-hidden"
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, transition: { duration: 0.35 } }}
+        className="fixed inset-0 z-[110] flex items-center justify-center overflow-hidden bg-primary/65 px-4 backdrop-blur-md"
       >
-        {/* Progress Bar (Top) */}
-        <div className="absolute top-0 left-0 w-full h-2 bg-black/20 z-50">
-          <motion.div 
-            initial={{ width: "100%" }}
-            animate={{ width: "0%" }}
-            transition={{ duration: 7, ease: "linear" }}
-            className="h-full bg-[#f5f2eb]"
-          />
-        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(245,242,235,0.22),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(245,242,235,0.12),_transparent_32%)]" />
 
-        {/* Close Button */}
-        <button
-          onClick={() => setIsVisible(false)}
-          className="absolute top-6 right-6 z-50 p-3 text-[#f5f2eb]/70 hover:text-[#f5f2eb] bg-black/10 hover:bg-black/30 rounded-full transition-all backdrop-blur-sm group"
+        <motion.div
+          initial={{ opacity: 0, y: 30, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 16, scale: 0.98 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 w-full max-w-5xl overflow-hidden rounded-[2rem] border border-paper/20 bg-[#4f0006] text-paper shadow-[0_30px_120px_rgba(0,0,0,0.35)]"
         >
-          <X size={32} className="group-hover:rotate-90 transition-transform duration-300" />
-        </button>
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(245,242,235,0.16),transparent_32%,transparent_65%,rgba(245,242,235,0.08))]" />
 
-        {/* Background Image Wrapper (Mobile: Absolute Full Screen, Desktop: Right Side 50%) */}
-        <div className="absolute inset-0 z-0 md:relative md:order-2 md:w-1/2 md:h-full overflow-hidden">
-           {/* Image Container */}
-          <motion.div 
-            initial={{ scale: 1.2, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ 
-              backgroundImage: 'url("https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/Progetto%20senza%20titolo.jpg")',
-              backgroundPosition: 'center 20%'
-            }}
-          >
-             {/* Mobile: Heavy Gradient from bottom to top for text readability */}
-             <div className="absolute inset-0 bg-gradient-to-t from-[#4f0006] via-[#4f0006]/80 to-transparent md:hidden"></div>
-             
-             {/* Desktop: Gradient from left to right */}
-             <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#4f0006] via-transparent to-transparent"></div>
-          </motion.div>
-          
-          {/* Placeholder Text for Image Area (Desktop Only) */}
-          <div className="absolute bottom-12 right-12 z-20 text-right hidden md:block">
-            <p className="font-serif text-5xl text-[#4f0006] rotate-[-5deg]">
-              Novità
-            </p>
+          <div className="absolute left-0 top-0 h-1.5 w-full bg-paper/10">
+            <motion.div
+              initial={{ width: '100%' }}
+              animate={{ width: '0%' }}
+              transition={{ duration: DISPLAY_SECONDS, ease: 'linear' }}
+              className="h-full bg-paper"
+            />
           </div>
-        </div>
 
-        {/* Content Wrapper (Mobile: Overlay at bottom, Desktop: Left Side 50%) */}
-        <div className="relative z-10 w-full h-full md:w-1/2 md:order-1 flex flex-col justify-end md:justify-center px-8 pb-12 pt-20 md:p-20 pointer-events-none md:pointer-events-auto">
-          {/* Allow pointer events for content children */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-            className="pointer-events-auto"
+          <button
+            onClick={() => setIsVisible(false)}
+            aria-label="Chiudi annuncio merch"
+            className="absolute right-4 top-4 z-20 rounded-full border border-paper/20 bg-paper/10 p-3 text-paper/80 transition hover:bg-paper/20 hover:text-paper"
           >
-            {/* Tagline */}
-            <div className="flex items-center gap-3 mb-4 md:mb-8">
-              <span className="flex h-3 w-3 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f5f2eb] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#f5f2eb]"></span>
-              </span>
-              <span className="font-sans font-bold tracking-[0.2em] text-xs md:text-base uppercase text-[#f5f2eb]/80 shadow-black/50 drop-shadow-md md:drop-shadow-none">
-                Nuova Collezione 2025
-              </span>
+            <X size={20} />
+          </button>
+
+          <div className="relative z-10 grid min-h-[520px] md:grid-cols-[1.15fr_0.85fr]">
+            <div className="flex flex-col justify-between px-6 pb-8 pt-20 md:px-10 md:pb-10 md:pt-12">
+              <div>
+                <div className="mb-6 flex flex-wrap items-center gap-3 text-[0.72rem] font-bold uppercase tracking-[0.28em] text-paper/75">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-paper/20 bg-paper/10 px-4 py-2">
+                    <Sparkles size={14} />
+                    Nuovo Merch
+                  </span>
+                  <span className="rounded-full border border-paper/15 px-4 py-2">Collezione 2026</span>
+                  <span className="rounded-full border border-paper/15 px-4 py-2">Online adesso</span>
+                </div>
+
+                <h1 className="max-w-3xl font-serif text-5xl leading-[0.9] md:text-7xl">
+                  NUOVO MERCH
+                  <br />
+                  <span className="italic text-paper/80">COLLEZIONE 2026</span>
+                </h1>
+
+                <p className="mt-6 max-w-2xl font-sans text-base leading-relaxed text-paper/80 md:text-xl">
+                  La nuova collezione Maxwell 2026 e&apos; arrivata: capi essenziali, identita'
+                  d&apos;istituto e uno stile pensato per farsi riconoscere.
+                </p>
+              </div>
+
+              <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center">
+                <a
+                  href={STORE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-3 rounded-full bg-paper px-7 py-4 font-sans text-sm font-bold uppercase tracking-[0.2em] text-primary transition hover:scale-[1.02] hover:bg-white"
+                >
+                  <ShoppingBag size={18} />
+                  Vai allo Store
+                  <ArrowRight size={18} />
+                </a>
+
+                <button
+                  onClick={() => setIsVisible(false)}
+                  className="inline-flex items-center justify-center rounded-full border border-paper/20 px-7 py-4 font-sans text-sm font-bold uppercase tracking-[0.2em] text-paper/80 transition hover:border-paper/40 hover:text-paper"
+                >
+                  Continua sul sito
+                </button>
+              </div>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="font-serif text-5xl leading-[0.9] md:text-[7rem] md:leading-[0.85] mb-4 md:mb-10 drop-shadow-lg md:drop-shadow-none">
-              IL MERCH<br />
-              <span className="italic opacity-90">È QUI.</span>
-            </h1>
-
-            {/* Collaboration Note */}
-            <div className="mb-8 md:mb-14">
-              <p className="font-sans text-lg md:text-2xl text-[#f5f2eb]/90 md:text-[#f5f2eb]/80 leading-relaxed max-w-lg font-light drop-shadow-md md:drop-shadow-none">
-                Realizzato in esclusiva collaborazione con <strong className="text-[#f5f2eb] font-bold">Unihoodies</strong>.
-              </p>
-            </div>
-
-            {/* CTA Button & Logo */}
-            <div className="flex flex-col items-start gap-6 md:flex-row md:items-center">
-              <a 
-                href="https://shop.unihoodies.it/scuola/istituto-maxwell/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full md:w-auto px-8 py-4 md:px-10 md:py-5 bg-[#f5f2eb] text-[#4f0006] hover:bg-white font-sans font-bold text-lg md:text-xl rounded-full transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-3 group"
+            <div className="relative flex min-h-[280px] items-end overflow-hidden border-t border-paper/10 md:min-h-full md:border-l md:border-t-0">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(245,242,235,0.15),transparent_26%),linear-gradient(160deg,#7a0812_0%,#4f0006_55%,#250003_100%)]" />
+              <motion.div
+                initial={{ rotate: -10, scale: 0.92, opacity: 0 }}
+                animate={{ rotate: -10, scale: 1, opacity: 1 }}
+                transition={{ delay: 0.15, duration: 0.55 }}
+                className="absolute left-6 top-10 rounded-[1.75rem] border border-paper/15 bg-paper/10 px-6 py-5 shadow-2xl backdrop-blur-sm"
               >
-                <ShoppingBag size={24} className="group-hover:animate-bounce" />
-                ACQUISTA ORA
-                <ArrowRight size={24} className="-rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-              </a>
-              
-              {/* Logo Placeholder */}
-               <div className="h-12 md:h-16 w-full md:w-auto flex items-center justify-center md:justify-start grayscale hover:grayscale-0 transition-all duration-300 opacity-90 hover:opacity-100">
-                  <img 
-                    src="https://www.unihoodies.it/wp-content/uploads/2025/08/Uni-Hoodies-abbigliamento-e-merchandising-scolastico-2.png" 
-                    alt="Unihoodies Logo" 
-                    className="h-full object-contain brightness-0 invert md:brightness-100 md:invert-0"
-                  />
-               </div>
-            </div>
-          </motion.div>
-        </div>
+                <p className="font-sans text-[0.72rem] font-bold uppercase tracking-[0.28em] text-paper/60">
+                  Collezione 2026
+                </p>
+                <p className="mt-2 font-serif text-3xl leading-none">MAXWELL</p>
+                <p className="mt-1 font-sans text-sm text-paper/70">Stile d&apos;istituto</p>
+              </motion.div>
+              <motion.div
+                initial={{ x: 20, y: 20, opacity: 0 }}
+                animate={{ x: 0, y: 0, opacity: 1 }}
+                transition={{ delay: 0.25, duration: 0.55 }}
+                className="absolute right-5 top-24 rounded-[1.75rem] border border-paper/15 bg-black/15 px-5 py-4 backdrop-blur-sm"
+              >
+                <p className="font-sans text-[0.72rem] font-bold uppercase tracking-[0.28em] text-paper/60">
+                  Nuovo merch
+                </p>
+                <p className="mt-2 max-w-[10rem] font-serif text-2xl leading-tight">
+                  Scoprilo ora
+                </p>
+              </motion.div>
 
+              <div className="relative z-10 w-full px-6 pb-8 md:px-8 md:pb-10">
+                <div className="rounded-[2rem] border border-paper/15 bg-paper/10 p-6 backdrop-blur-md">
+                  <p className="font-sans text-[0.72rem] font-bold uppercase tracking-[0.28em] text-paper/60">
+                    Chiusura automatica
+                  </p>
+                  <div className="mt-3 flex items-end justify-between gap-4">
+                    <div>
+                      <p className="font-serif text-6xl leading-none">
+                        {Math.ceil(timeLeft)}
+                      </p>
+                      <p className="mt-2 font-sans text-sm uppercase tracking-[0.22em] text-paper/65">
+                        secondi ancora
+                      </p>
+                    </div>
+                    <p className="max-w-[12rem] text-right font-sans text-sm leading-relaxed text-paper/75">
+                      Entra nello store e guarda la collezione completa.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
     </AnimatePresence>
   );

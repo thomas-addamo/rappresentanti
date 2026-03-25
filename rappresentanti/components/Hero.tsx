@@ -1,8 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ArrowRight, Sparkles } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  const scrollToMerch = () => {
+    const merchSection = document.getElementById('merch');
+    if (merchSection) {
+      merchSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-paper text-primary">
       {/* Background Decorative Elements */}
@@ -43,6 +50,18 @@ const Hero: React.FC = () => {
           </motion.p>
         </div>
 
+        <motion.button
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35, duration: 0.8, ease: 'easeOut' }}
+          onClick={scrollToMerch}
+          className="mb-6 inline-flex items-center gap-3 rounded-full border border-primary/15 bg-primary/5 px-5 py-3 font-sans text-[0.72rem] font-bold uppercase tracking-[0.24em] text-primary/80 transition hover:bg-primary hover:text-paper"
+        >
+          <Sparkles size={14} />
+          Nuovo Merch Collezione 2026
+          <ArrowRight size={14} />
+        </motion.button>
+
         <h1 className="font-serif text-[18vw] leading-[0.85] md:text-[11vw] text-primary flex flex-col items-center">
           <motion.span
             initial={{ y: 100, opacity: 0 }}
@@ -60,6 +79,15 @@ const Hero: React.FC = () => {
             for You.
           </motion.span>
         </h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8, ease: 'easeOut' }}
+          className="mt-6 max-w-2xl text-center font-sans text-sm leading-relaxed text-primary/65 md:text-base"
+        >
+          Scopri il nuovo merch Maxwell 2026.
+        </motion.p>
       </motion.div>
 
       <motion.div

@@ -1,98 +1,67 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ShoppingBag } from 'lucide-react';
+import { ArrowRight, ShoppingBag, Sparkles } from 'lucide-react';
+
+const STORE_URL = 'https://store.ecosum.it/ecommerce-catalogo/iis-maxwell-to';
 
 const MerchSection: React.FC = () => {
   return (
-    <section id="merch" className="relative w-full h-[120vh] md:h-screen flex flex-col md:flex-row bg-[#4f0006] text-[#f5f2eb] overflow-hidden">
-      
-      {/* Background Image Wrapper (Mobile: Absolute Full Screen, Desktop: Right Side 50%) */}
-      <div className="absolute inset-0 z-0 md:relative md:order-2 md:w-1/2 md:h-full overflow-hidden">
-         {/* Image Container */}
-        <motion.div 
-          initial={{ scale: 1.1 }}
-          whileInView={{ scale: 1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: true }}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: 'url("https://thomas-addamo.github.io/A.S.-2025-26-/Tpsit/Html/Progetto%20senza%20titolo.jpg")',
-            backgroundPosition: 'center 20%'
-          }}
-        >
-           {/* Mobile: Heavy Gradient from bottom to top for text readability */}
-           <div className="absolute inset-0 bg-gradient-to-t from-[#4f0006] via-[#4f0006]/80 to-transparent md:hidden"></div>
-           
-           {/* Desktop: Gradient from left to right */}
-           <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#4f0006] via-transparent to-transparent"></div>
-        </motion.div>
-        
-        {/* Placeholder Text for Image Area (Desktop Only) */}
-        <div className="absolute bottom-12 right-12 z-20 text-right hidden md:block">
-          <p className="font-serif text-5xl text-[#4f0006] rotate-[-5deg]">
-            Novità
-          </p>
-        </div>
-      </div>
+    <section
+      id="merch"
+      className="relative overflow-hidden bg-[#4f0006] px-6 py-20 text-[#f5f2eb] md:px-12 md:py-28"
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(245,242,235,0.14),_transparent_30%),radial-gradient(circle_at_80%_25%,_rgba(245,242,235,0.1),_transparent_24%),linear-gradient(180deg,#5e050d_0%,#420005_52%,#2c0004_100%)]" />
+      <div className="absolute left-[-8rem] top-24 h-72 w-72 rounded-full bg-paper/10 blur-[140px]" />
+      <div className="absolute bottom-16 right-[-4rem] h-64 w-64 rounded-full bg-paper/10 blur-[120px]" />
 
-      {/* Content Wrapper (Mobile: Overlay at bottom, Desktop: Left Side 50%) */}
-      <div className="relative z-10 w-full h-full md:w-1/2 md:order-1 flex flex-col justify-end md:justify-center px-8 pb-12 pt-20 md:p-20 pointer-events-none md:pointer-events-auto">
+      <div className="relative z-10 mx-auto max-w-5xl">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
-          className="pointer-events-auto"
+          transition={{ duration: 0.65, ease: 'easeOut' }}
+          className="relative overflow-hidden rounded-[2.5rem] border border-paper/15 bg-[linear-gradient(145deg,rgba(245,242,235,0.12),rgba(245,242,235,0.04))] px-6 py-10 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-sm md:px-10 md:py-14"
         >
-          {/* Tagline */}
-          <div className="flex items-center gap-3 mb-4 md:mb-8">
-            <span className="flex h-3 w-3 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#f5f2eb] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#f5f2eb]"></span>
-            </span>
-            <span className="font-sans font-bold tracking-[0.2em] text-xs md:text-base uppercase text-[#f5f2eb]/80 shadow-black/50 drop-shadow-md md:drop-shadow-none">
-              Nuova Collezione 2025
-            </span>
-          </div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(245,242,235,0.12),_transparent_26%)]" />
 
-          {/* Main Headline */}
-          <h2 className="font-serif text-5xl leading-[0.9] md:text-[7rem] md:leading-[0.85] mb-4 md:mb-10 drop-shadow-lg md:drop-shadow-none">
-            IL MERCH<br />
-            <span className="italic opacity-90">È QUI.</span>
-          </h2>
+          <div className="relative z-10">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-paper/15 bg-paper/10 px-5 py-3 font-sans text-xs font-bold uppercase tracking-[0.28em] text-paper/80">
+              <Sparkles size={16} />
+              Merch ufficiale Maxwell
+            </div>
 
-          {/* Collaboration Note */}
-          <div className="mb-8 md:mb-14">
-            <p className="font-sans text-lg md:text-2xl text-[#f5f2eb]/90 md:text-[#f5f2eb]/80 leading-relaxed max-w-lg font-light drop-shadow-md md:drop-shadow-none">
-              Realizzato in esclusiva collaborazione con <strong className="text-[#f5f2eb] font-bold">Unihoodies</strong>.
+            <h2 className="font-serif text-5xl leading-[0.9] md:text-7xl xl:text-[5.4rem]">
+              NUOVO MERCH
+              <br />
+              <span className="italic text-paper/75">COLLEZIONE 2026</span>
+            </h2>
+
+            <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-paper/78 md:text-[1.15rem]">
+              Una collezione pensata per portare il Maxwell fuori dall&apos;aula: linee pulite,
+              carattere deciso e tutto il peso dell&apos;identita' d&apos;istituto.
             </p>
-          </div>
 
-          {/* CTA Button & Logo */}
-          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center">
-            <a 
-              href="https://shop.unihoodies.it/scuola/istituto-maxwell/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-full md:w-auto px-8 py-4 md:px-10 md:py-5 bg-[#f5f2eb] text-[#4f0006] hover:bg-white font-sans font-bold text-lg md:text-xl rounded-full transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-3 group"
-            >
-              <ShoppingBag size={24} className="group-hover:animate-bounce" />
-              ACQUISTA ORA
-              <ArrowRight size={24} className="-rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-            </a>
-            
-            {/* Logo Placeholder */}
-             <div className="h-12 md:h-16 w-full md:w-auto flex items-center justify-center md:justify-start grayscale hover:grayscale-0 transition-all duration-300 opacity-90 hover:opacity-100">
-                <img 
-                  src="https://www.unihoodies.it/wp-content/uploads/2025/08/Uni-Hoodies-abbigliamento-e-merchandising-scolastico-2.png" 
-                  alt="Unihoodies Logo" 
-                  className="h-full object-contain brightness-0 invert md:brightness-100 md:invert-0"
-                />
-             </div>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <a
+                href={STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 rounded-full bg-paper px-8 py-4 font-sans text-sm font-bold uppercase tracking-[0.2em] text-primary transition hover:scale-[1.02] hover:bg-white"
+              >
+                <ShoppingBag size={18} />
+                Accedi allo store
+                <ArrowRight size={18} />
+              </a>
+              <a
+                href="#news"
+                className="inline-flex items-center justify-center rounded-full border border-paper/20 px-8 py-4 font-sans text-sm font-bold uppercase tracking-[0.2em] text-paper/80 transition hover:border-paper/40 hover:text-paper"
+              >
+                Leggi la news
+              </a>
+            </div>
           </div>
         </motion.div>
       </div>
-
     </section>
   );
 };

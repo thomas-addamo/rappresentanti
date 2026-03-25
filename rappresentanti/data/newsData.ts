@@ -1,7 +1,25 @@
 import { NewsItem } from '../types';
 
 export const newsData: NewsItem[] = [
-    {
+  {
+    id: 9,
+    date: "25 Mar 2026",
+    category: "Merchandising",
+    title: "Nuovo Merch 2026 Online: la Collezione Maxwell è Uscita",
+    excerpt: "La nuova collezione 2026 è online ora sullo store ufficiale. Home, popup e sezione dedicata: questo merch va visto subito.",
+    author: "Rappresentanti",
+    featured: true,
+    content: `
+      <p>Cari studenti,</p>
+      <p>Il momento e' arrivato: il <b>nuovo merch Maxwell - Collezione 2026</b> e' ufficialmente disponibile.</p>
+      <p>Una linea pensata per rappresentare l&apos;istituto con uno stile essenziale, deciso e immediatamente riconoscibile.</p>
+      <p>Per entrare subito nel catalogo, aprite lo store ufficiale qui: <a href="https://store.ecosum.it/ecommerce-catalogo/iis-maxwell-to" target="_blank" rel="noopener noreferrer" class="underline hover:text-primary">store.ecosum.it/ecommerce-catalogo/iis-maxwell-to</a>.</p>
+      <p>Se volete portare il Maxwell con voi ogni giorno, questa e' la collezione giusta.</p>
+      <p>Scopritela ora.</p>
+      <p>I vostri Rappresentanti.</p>
+    `
+  },
+  {
     id: 8,
     date: "25 Feb 2026",
     category: "Collettivo",
